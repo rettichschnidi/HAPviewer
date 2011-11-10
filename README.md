@@ -51,16 +51,16 @@ Additional requirements to build the documentation
 Configuring the project
 =======================
 
- > mkdir build_hapviewer
- > cd build_hapviewer
- > cmake ../hapviewer
- > ccmake . #configure HAPviewer according to your needs
+ 	mkdir build_hapviewer
+ 	cd build_hapviewer
+ 	cmake ../hapviewer
+ 	ccmake . #configure HAPviewer according to your needs
 
 Make targets
 ============
 
-> make # build all the enabled targets (hapviz, haplibtest, HAPviewer, etc.)
-> make test # run the integrated tests (if enabled in ccmake)
-> make clean # clean up the project
-> make doc # build the doxygen documentation (if enable in ccmake)
-> make install # installs the built targets
+	make # build all the enabled targets (hapviz, haplibtest, HAPviewer, etc.)
+	make test # run the integrated tests (if enabled in ccmake)
+	make clean # clean up the project
+	make doc # build the doxygen documentation (if enable in ccmake)
+	make install # installs the built targets
