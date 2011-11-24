@@ -65,12 +65,16 @@ HAPVIEWER_DEBUG*	: Enables debug messages (usually off)
 
 HAPVIEWER_ENABLE_ARGUS	: Enables import of Argus data 
 			  (http://www.qosient.com/argus/index.shtml)
+
 HAPVIEWER_ENABLE_CFLOW	: Enables import of HAPviewer proprietary binary 
 			  flow data (see cflow.h for details)
+
 HAPVIEWER_ENABLE_IPFIX	: Enables import of bidirectional IPFIX flow data 
 			  (for import template see gfilter_ipfix_vx5ipfix_bi.cpp)
+
 HAPVIEWER_ENABLE_NFDUMP	: Enables import of uncompressed nfdump flow data
 			  (http://nfdump.sourceforge.net/)
+
 HAPVIEWER_ENABLE_NFDUMP	: Enables import of PCAP packet data
 			  (http://wiki.wireshark.org/Development/LibpcapFileFormat)
 
