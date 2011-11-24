@@ -5,9 +5,9 @@
  * \file HashMap.h
  * \brief Header file that defines keys and hashfunction for use with the SGI hash_map
  * 
- * Copyright (c) 2008, Bernhard Tellenbach 
  *
- * Author: Bernhard Tellenbach  (bernhard.tellenbach@gmail.com) 
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  * 
  * 
  *\section general_hmap General Remarks on the SGI hash_map

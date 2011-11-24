@@ -1,0 +1,82 @@
+FAQ List for HAPviewer 
+======================
+
+22nd of August 2011 / EG
+
+
+
+
+Cmake Configure Errors
+----------------------
+
+Q01: I get errors on too old versions?  How to correct?
+
+A01: Take a look at file README, section "Installation" to learn what versions are required.
+
+
+Q02: I have installed required GTKMM/GLIB files/packages but still some includes are reported 
+as not found. How to correct?
+
+A02: Install all packages having names "gtkmm*" and "libgtk-3-dev". 
+If there are still more errors then start the cmake configurator using command: ccmake .
+If missing paths are not shown in displayed list then switch to "advanved view mode" by 
+pressing key "t". Use keyboard up/down keys to navigate through list (beware: full list 
+goes beyond display window) and <enter>(type new path)<enter> to change an entry. 
+
+
+Q03: I have installed the Graphviz package but still it seems to be missing.  
+How to correct?
+
+A03: You likely have installed some but not all required packages, needed are packages 
+named libgvc* and libgraphviz-dev.
+
+
+Q04: I have installed a required newer Boost package locally. But still cmake reports a too 
+old version by  obviously only checking the globally installed package. How can I convince 
+cmake to use the locally installed package?
+
+A04: This is a well-known problem of cmake. For newer cmake versions there is an environment 
+variable named Boost_NO_SYSTEM_PATHS to correct this problem. It can be set on the command 
+line when calling cmake, e.g.
+cmake -DBOOST_ROOT=/home/testuser/local/ -DBoost_NO_SYSTEM_PATHS=true ../hapviewer
+
+
+
+Cmake Make Errors
+-----------------
+
+Q21: I have set some missing paths in ccmake but when calling make I get errors concenrning 
+missing include files. How to correct?
+
+A21: Cmake uses its own detection code to search for packages. However, this does not work 
+out all the time as some packages prefer to provide required paths through the pkg-config 
+program not matching what cmake detected. Use pkg-config to identify correct path(s) and 
+enter them in cmake configurator (see also A02).
+Alternatively, you can use the command "locate <include_file_name>" to search for the 
+location of a required include file. Again, you have to enter this missing path through 
+ccmake.
+
+
+
+
+PCAP++ Library Problems
+-----------------------
+
+Q31: How can I get a newer version of libpcap++-0.0.2 to solve configuration and make 
+problems?
+
+A31: There is no newer version available up-to-date, but we have made some modifications 
+to eliminate the following problems:
+
+- configure error "libpcap >= 0.8 is required" despite a newer library is installed
+  --> cause is a buggy version check
+  
+- warning concerning file DataLink.h
+  --> obsolete enum type declaration (C-style but not C++)
+  
+- compile error: missing "free" in file pcap.cc
+  --> cause is missing include statement for file cstdlib.h
+  
+For convenience we provide a corrected version as file libpcap++-0.0.2b.tar.gz in sub-
+directory "various/".
+

@@ -1,6 +1,9 @@
 /**
  *	\file IPv6_addr.cpp
  *	\brief Internally used class to store IP addresses (v4 and v6)
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 
 #include <algorithm>

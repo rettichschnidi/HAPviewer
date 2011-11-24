@@ -20,6 +20,9 @@
  * - empty partitions contain no filter information. they will match any value.
  *   example for local ports(matches any local port):
  *     {host ip info};{proto info};;{remote port info};{remote ip info}[;{flow direction};{desummarized role types}]
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 
 #include <sstream>

@@ -2,6 +2,9 @@
  *	\file gimport.cpp
  *	\brief Binary traffic data import, and
  *	inference of hpg (host profile graphlet) data from flow data.
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 
 #include <iostream>

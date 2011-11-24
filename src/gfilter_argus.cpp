@@ -1,6 +1,9 @@
 /**
  *	\file gfilter_argus.cpp
  *	\brief Filter to import argus files
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 
 #include "gfilter_argus.h"

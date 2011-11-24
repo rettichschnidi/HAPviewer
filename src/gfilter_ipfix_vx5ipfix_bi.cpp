@@ -6,6 +6,12 @@
  *
  *	Author: Brian Trammell
  *	Changes (delta counters removed, biflow support added): Eduard Glatz
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 #include "gfilter_ipfix_vx5ipfix_bi.h"
 

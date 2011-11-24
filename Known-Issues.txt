@@ -1,0 +1,17 @@
+Known Deficiencies
+------------------
+
+The listed issues will be corrected in future versions.
+
+
+
+#1:  
+The main window title icon currently is not installed by "make install".
+This results in error message "ERROR: could not open file /home/user/.gtkrc-2.0/icon1.png"
+upon start-up of HAPviewer. This error does not impact the functionality of HAPviewer and, 
+thus, can be safely ignored.
+
+#2:
+"make install" reports an error on missing doxygen documentation. To resolve this problem 
+run "make doc" first, or ignore the message if you do not need the documentation.
+

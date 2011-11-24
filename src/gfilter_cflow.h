@@ -1,6 +1,9 @@
 /**
  *	\file gfilter_cflow.h
  *	\brief Filter to import and export cflow files
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 
 #ifndef GFILTER_CFLOW_H_

@@ -1,3 +1,10 @@
+/**
+ *	\file HAPGraphlet.h
+ *	\brief Reads a DOT Graph into memory and allows easy access to it
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
+ */
 #ifndef HAPGRAPHLET_H_
 #define HAPGRAPHLET_H_
 

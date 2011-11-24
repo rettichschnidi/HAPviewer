@@ -6,6 +6,9 @@
  *	Shown metedata is graph-oriented by providing e.g. count of edges.
  *	An alternate form of list view (see listview1.cpp/h) is used when graphlets are directly 
  *	derived from packet or flow data.
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 
 #include "HAPviewer.h"

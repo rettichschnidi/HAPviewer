@@ -7,6 +7,9 @@
  *	So far, we only support the binary "hpg" format defined in hpg.h.
  *	This format is very space efficient as it was originally introduced
  *	to store a large number of graphlets in a file efficiently.
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 #include <string>
 #include <boost/lexical_cast.hpp>

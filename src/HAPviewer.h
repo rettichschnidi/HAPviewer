@@ -3,6 +3,9 @@
 /**
  *	\file HAPviewer.h
  *	\brief Application-wide constants.
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 
 #define	default_hpg_filename ".g.hpg"

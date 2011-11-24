@@ -4,6 +4,9 @@
 /**
  *	\file gfilter_pcap.h
  *	\brief Filter to import pcap files
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 #include <string>
 

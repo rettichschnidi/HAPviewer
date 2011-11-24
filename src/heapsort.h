@@ -17,6 +17,9 @@
  *	Array sets are used in such a way that for a set of n arrays a list of n-tuples
  *	are managed where each element of a tuple is an array entry for a particular
  *	index value.
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 
 #include <stdint.h>

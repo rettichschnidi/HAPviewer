@@ -1,13 +1,13 @@
 #ifndef GFILTER_IPFIX_VX5IPFIX_H_
 #define GFILTER_IPFIX_VX5IPFIX_H_
 /**
- *\file gfilter_ipfix_vx5ipfix_bi.h
+ *	\file gfilter_ipfix_vx5ipfix_bi.h
  *
  *	\brief Example IPFIX file reader and writer code based on a template
  *	supporting uniflows and biflows on IPv4.
  *
- *	Author: Brian Trammell
- *	Changes (delta counters removed, biflow support added): Eduard Glatz
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 
 #ifdef __cplusplus

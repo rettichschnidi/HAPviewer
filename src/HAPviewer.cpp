@@ -7,6 +7,9 @@
  *	hpg (host profile graphlet) binary files can be loaded and then
  *	browsed through a metadata table. Selected graphlets can be
  *	visualized. 
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 #include <signal.h>
 #if defined(linux) || defined(__linux__)

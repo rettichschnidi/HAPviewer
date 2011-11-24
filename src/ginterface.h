@@ -5,6 +5,9 @@
  *	\brief Interface to library version of HAPviewer.
  *	By use of this interface network traffic data can be visualized
  *	as a HAP graphlet.
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 
 #include <string>

@@ -5,6 +5,9 @@
  *	Implements HPG to DOT transformation of graphlet data.
  *	HPG: a specific type of graphlet description (three versions exist, for details see below).
  *	DOT: graph data description format as defined by Graphviz ("dot-language").
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 #include <iostream>
 #include <sstream>

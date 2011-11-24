@@ -1,13 +1,8 @@
 /** \file HashMap.cpp
  * \brief HashMap implementation file
  * 
- * Copyright (c) 2008, Bernhard Tellenbach 
- *
- * Author: Bernhard Tellenbach  (bernhard.tellenbach@gmail.com) 
- * 
- * Distributed under the Gnu Public License version 2 or the modified
- * BSD license (see file COPYING
- *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 #include <stdio.h>
 #include <cstring>

@@ -5,6 +5,9 @@
  *	This type of list view is used whenever graphlets are directly derived from packet or flow data.
  *	An alternate form of list view (see listview_hpg.cpp/h) is used when pre-processed graphlet data
  *	is imported.
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 
 #include <arpa/inet.h>

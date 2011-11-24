@@ -11,6 +11,8 @@ Licensing
 =========
 Distributed under the GNU General Public License version 2 (GPL.txt)
 or the modified BSD (BSD.txt) license unless specified otherwise.
+A list of authors can be found in file 'AUTHORS' which is part of
+the source code package.
 
 Installation
 ============
@@ -50,17 +52,42 @@ Additional requirements to build the documentation
 
 Configuring the project
 =======================
+	mkdir build_hapviewer
+	cd build_hapviewer
+	cmake ../hapviewer
+	ccmake .                 # configure HAPviewer according to your needs
 
- 	mkdir build_hapviewer
- 	cd build_hapviewer
- 	cmake ../hapviewer
- 	ccmake . #configure HAPviewer according to your needs
+NOTICE: in case of configuration errors please consult file 'INSTALL_FAQ.txt'.
+
+Overview of some configuration options supported:
+
+HAPVIEWER_DEBUG*	: Enables debug messages (usually off)
+
+HAPVIEWER_ENABLE_ARGUS	: Enables import of Argus data 
+			  (http://www.qosient.com/argus/index.shtml)
+HAPVIEWER_ENABLE_CFLOW	: Enables import of HAPviewer proprietary binary 
+			  flow data (see cflow.h for details)
+HAPVIEWER_ENABLE_IPFIX	: Enables import of bidirectional IPFIX flow data 
+			  (for import template see gfilter_ipfix_vx5ipfix_bi.cpp)
+HAPVIEWER_ENABLE_NFDUMP	: Enables import of uncompressed nfdump flow data
+			  (http://nfdump.sourceforge.net/)
+HAPVIEWER_ENABLE_NFDUMP	: Enables import of PCAP packet data
+			  (http://wiki.wireshark.org/Development/LibpcapFileFormat)
+
 
 Make targets
 ============
+	make           # build all the enabled targets (hapviz, haplibtest, HAPviewer, etc.)
+	make test      # run the integrated tests (if enabled in ccmake)
+	make clean     # clean up the project
+	make doc       # build the doxygen documentation (if enabled in ccmake)
+	make install   # installs the built targets (requires root permissions)
 
-	make # build all the enabled targets (hapviz, haplibtest, HAPviewer, etc.)
-	make test # run the integrated tests (if enabled in ccmake)
-	make clean # clean up the project
-	make doc # build the doxygen documentation (if enable in ccmake)
-	make install # installs the built targets
+
+Documentation
+=============
+A basic project and program description can be found under: http://hapviewer.sourceforge.net/
+
+A description of the source code can be created by "make doc" and will be placed into
+the sub-directory "doxygen_docu/html" in the build directory. To view just open 
+file index.html with your preferred web browser.

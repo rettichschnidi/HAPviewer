@@ -23,8 +23,9 @@ if(${CMAKE_MAJOR_VERSION} EQUAL 2 AND ${CMAKE_MINOR_VERSION} EQUAL 6)
 	set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/modules/v2.6/")
 endif()
 
-#Place all binaries in bin/ 
+#Place all executables in bin/, libraries in /lib
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 
 #Option to perform nightly, continuous, and experimental tests incl. submission to cdash
 option (HAPVIEWER_ENABLE_TESTING "Enable continuous testing and reporting to a CDash server" OFF)

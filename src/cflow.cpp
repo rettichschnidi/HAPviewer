@@ -1,6 +1,9 @@
 /**
  *	\file cflow.cpp
  *	\brief Filtering by flow type and protocol as configured in preferences "pref"..
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 
 #include <unistd.h>
