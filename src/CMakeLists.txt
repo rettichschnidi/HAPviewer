@@ -127,7 +127,7 @@ if(HAPVIEWER_ENABLE_IPFIX)
 			${GTK2_GLIBCONFIG_INCLUDE_DIR}
 		)
 		set(HAPVIEWER_CORELIBS ${HAPVIEWER_CORELIBS} ${FIXBUF_LIBRARIES} ${GTK2_GLIB_LIBRARIES})
-	elseif()
+	else()
 		message(FATAL_ERROR "Could not find glib! (IPFIX depends on the glib library)")
 	endif()
 endif()
