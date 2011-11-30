@@ -445,9 +445,9 @@ void CGraphlet::add_single_flow(const cflow_t & pflow, int role_num, int flow_id
  */
 void CGraphlet::add_generic_role(CRole::role_t & role, const CRole::role_t& parent_role, IPv6_addr lastIP, Subflowlist flow_list) {
 	if (dbg) {
-		cout << "adding generic role(num:" << role.role_num << ", parent num:" << parent_role.role_num << ") with pattern:"
+		cout << "adding generic role(num: " << role.role_num << ", parent num:" << parent_role.role_num << ") with pattern:"
 		      << util::graphletSummarizationToString(role.pattern) << ", parent pattern:" << util::graphletSummarizationToString(parent_role.pattern) << " with "
-		      << role.flows << "flows" << endl;
+		      << role.flows << " flows" << endl;
 	}
 
 	bool is_fully_desummarized = role.pattern == single_flow;
