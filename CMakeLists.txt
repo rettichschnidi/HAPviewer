@@ -28,7 +28,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 
 #Option to perform nightly, continuous, and experimental tests incl. submission to cdash
-option (HAPVIEWER_ENABLE_TESTING "Enable continuous testing and reporting to a CDash server" OFF)
+option (HAPVIEWER_ENABLE_TESTING "Build tests" ON)
 if (HAPVIEWER_ENABLE_TESTING)
 	include(CTest)
 	enable_testing()
