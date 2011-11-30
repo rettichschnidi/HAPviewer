@@ -35,41 +35,42 @@ endif()
 
 
 set(HAPVIEWER_CORE_CPPFILES
-	IPv6_addr.cpp
-	gfilter.cpp
-	cflow.cpp
-	ggraph.cpp
-	ghpgdata.cpp
-	gimport.cpp
-	ginterface.cpp
-	grole.cpp
-	gutil.cpp
-	HashMapE.cpp
-	HashMap.cpp
-	heapsort.cpp
-	lookup3.cpp
-	gsummarynodeinfo.cpp
+	lib/IPv6_addr.cpp
+	lib/gfilter.cpp
+	lib/cflow.cpp
+	lib/ggraph.cpp
+	lib/ghpgdata.cpp
+	lib/gimport.cpp
+	lib/ginterface.cpp
+	lib/grole.cpp
+	lib/gutil.cpp
+	lib/HashMapE.cpp
+	lib/HashMap.cpp
+	lib/heapsort.cpp
+	lib/lookup3.cpp
+	lib/gsummarynodeinfo.cpp
 )
 set(HAPVIEWER_CORE_CPPHEADERS
-	ginterface.h
-	ghpgdata.h
-	grole.h
-	hpg.h
-	gutil.h
-	IPv6_addr.h
-	gimport.h
-	cflow.h
-	HashMapE.h
-	global.h
-	ggraph.h
-	gfilter.h
-	gsummarynodeinfo.h
-	lookup3.h
-	HashMap.h
+	lib/ginterface.h
+	lib/ghpgdata.h
+	lib/grole.h
+	lib/hpg.h
+	lib/gutil.h
+	lib/IPv6_addr.h
+	lib/gimport.h
+	lib/cflow.h
+	lib/HashMapE.h
+	lib/global.h
+	lib/ggraph.h
+	lib/gfilter.h
+	lib/gsummarynodeinfo.h
+	lib/lookup3.h
+	lib/HashMap.h
 )
 include_directories(
 	"${PROJECT_BINARY_DIR}/configured_files/"
-	"${PROJECT_SOURCE_DIR}/src/"
+	"${PROJECT_SOURCE_DIR}/src/lib/"
+	"${PROJECT_SOURCE_DIR}/src/tools/"
 )
 
 set(CMAKE_SHARED_LINKER_FLAGS ${CMAKE_SHARED_LINKER_FLAGS_INIT} "-Wl,-lstdc++")
@@ -84,7 +85,7 @@ include_directories(
 
 if(HAPVIEWER_ENABLE_PCAP)
 	if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-		set(HAPVIEWER_CORE_CPPFILES ${HAPVIEWER_CORE_CPPFILES} gfilter_pcap.cpp)
+		set(HAPVIEWER_CORE_CPPFILES ${HAPVIEWER_CORE_CPPFILES} lib/gfilter_pcap.cpp)
 		set(GIMPORT_PUSHBACK "${GIMPORT_PUSHBACK}	inputfilters.push_back(new GFilter_pcap);\n")
 		set(GIMPORT_INCLUDES "${GIMPORT_INCLUDES}#include \"gfilter_pcap.h\"\n")
 		find_package(PCAP++ REQUIRED)
@@ -105,13 +106,13 @@ if(HAPVIEWER_ENABLE_CFLOW)
 	set(GIMPORT_PUSHBACK "${GIMPORT_PUSHBACK}	inputfilters.push_back(new GFilter_cflow4);\n")
 	set(GIMPORT_PUSHBACK "${GIMPORT_PUSHBACK}	inputfilters.push_back(new GFilter_cflow6);\n")
 	set(GIMPORT_INCLUDES "${GIMPORT_INCLUDES}#include \"gfilter_cflow.h\"\n")
-	set(HAPVIEWER_CORE_CPPFILES ${HAPVIEWER_CORE_CPPFILES} gfilter_cflow.cpp)
+	set(HAPVIEWER_CORE_CPPFILES ${HAPVIEWER_CORE_CPPFILES} lib/gfilter_cflow.cpp)
 endif()
 
 if(HAPVIEWER_ENABLE_ARGUS)
 	set(GIMPORT_PUSHBACK "${GIMPORT_PUSHBACK}	inputfilters.push_back(new GFilter_argus);\n")
 	set(GIMPORT_INCLUDES "${GIMPORT_INCLUDES}#include \"gfilter_argus.h\"\n")
-	set(HAPVIEWER_CORE_CPPFILES ${HAPVIEWER_CORE_CPPFILES} gfilter_argus.cpp)
+	set(HAPVIEWER_CORE_CPPFILES ${HAPVIEWER_CORE_CPPFILES} lib/gfilter_argus.cpp)
 endif()
 
 if(HAPVIEWER_ENABLE_IPFIX)
@@ -119,7 +120,7 @@ if(HAPVIEWER_ENABLE_IPFIX)
 	set(GIMPORT_INCLUDES "${GIMPORT_INCLUDES}#include \"gfilter_ipfix.h\"\n")
 	find_package(GTK2)
 	if(GTK2_GLIB_INCLUDE_DIR AND GTK2_GLIBCONFIG_INCLUDE_DIR AND GTK2_GLIB_LIBRARY)
-		set(HAPVIEWER_CORE_CPPFILES ${HAPVIEWER_CORE_CPPFILES} gfilter_ipfix_vx5ipfix_bi.cpp gfilter_ipfix.cpp)
+		set(HAPVIEWER_CORE_CPPFILES ${HAPVIEWER_CORE_CPPFILES} lib/gfilter_ipfix_vx5ipfix_bi.cpp lib/gfilter_ipfix.cpp)
 		find_package(FIXBUF REQUIRED)
 		include_directories(
 			${FIXBUF_INCLUDE_DIRS}
@@ -135,7 +136,7 @@ endif()
 if(HAPVIEWER_ENABLE_NFDUMP)
 	set(GIMPORT_PUSHBACK "${GIMPORT_PUSHBACK}	inputfilters.push_back(new GFilter_nfdump);\n")
 	set(GIMPORT_INCLUDES "${GIMPORT_INCLUDES}#include \"gfilter_nfdump.h\"\n")
-	set(HAPVIEWER_CORE_CPPFILES ${HAPVIEWER_CORE_CPPFILES} gfilter_nfdump.cpp gfilter_nfdump_gnfdump.cpp)
+	set(HAPVIEWER_CORE_CPPFILES ${HAPVIEWER_CORE_CPPFILES} lib/gfilter_nfdump.cpp lib/gfilter_nfdump_gnfdump.cpp)
 endif()
 
 #this generates gimport_config.h which adds all enabled input filters to the project
@@ -152,7 +153,7 @@ if(HAPVIEWER_LIBRARY_LIBTEST)
 		set(LIBTEST_LIBS ${Boost_LIBRARIES})
 
 		add_executable(haplibtest
-			haplibtest.cpp
+			tools/haplibtest.cpp
 		)
 		target_link_libraries(haplibtest
 			hapviz
@@ -176,8 +177,8 @@ if(HAPVIEWER_SHOWCFLOW)
 		)
 
 		add_executable(show_cflows
-			show_cflows.cpp
-			gfilter_cflow.cpp
+			tools/show_cflows.cpp
+			lib/gfilter_cflow.cpp
 		)
 		target_link_libraries(show_cflows
 			hapviz
@@ -201,8 +202,8 @@ if(HAPVIEWER_MKCFLOWS)
 		)
 
 		add_executable(mk_cflows
-			mk_cflows.cpp
-			gfilter_cflow.cpp
+			tools/mk_cflows.cpp
+			lib/gfilter_cflow.cpp
 		)
 		target_link_libraries(mk_cflows
 			hapviz
@@ -226,8 +227,8 @@ if(HAPVIEWER_MKTESTCFLOWS)
 		)
 
 		add_executable(mk_test_cflows
-			mk_test_cflows.cpp
-			gfilter_cflow.cpp
+			tools/mk_test_cflows.cpp
+			lib/gfilter_cflow.cpp
 		)
 		target_link_libraries(mk_test_cflows
 			hapviz
@@ -265,7 +266,7 @@ if(HAPVIEWER_LIBRARY)
 endif()
 
 if(HAPVIEWER_GUI)
-	set(HAPVIEWER_GUI_CPPFILES "${HAPVIEWER_CORE_CPPFILES}" glistview_cflow.cpp glistview_hpg.cpp gmodel.cpp gview.cpp HAPviewer.cpp HAPGraphlet.cpp)
+	set(HAPVIEWER_GUI_CPPFILES "${HAPVIEWER_CORE_CPPFILES}" lib/glistview_cflow.cpp lib/glistview_hpg.cpp lib/gmodel.cpp lib/gview.cpp tools/HAPviewer.cpp lib/HAPGraphlet.cpp)
 
 	add_executable(HAPviewer ${HAPVIEWER_GUI_CPPFILES})
 	set_target_properties(HAPviewer PROPERTIES COMPILE_FLAGS "-DGUI")

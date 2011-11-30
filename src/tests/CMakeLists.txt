@@ -20,7 +20,7 @@ if(HAPVIEWER_ENABLE_CFLOW)
 endif()
 
 #add the cute-headers as well as the ones of our own application
-include_directories("../" "cute/")
+include_directories("../lib/" "../tools/" "cute/")
 
 foreach(test ${test_sources} )
 	string(REGEX REPLACE ".*test_(.*)" "\\1" basename "${test}")
