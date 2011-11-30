@@ -14,7 +14,7 @@
 #include <set>
 #include <stdint.h>
 
-// forward declarations so we do not have to include all the depencies
+// forward declarations so we do not have to include all the dependencies
 class CImport;
 class ChpgData;
 class prefs_t;
