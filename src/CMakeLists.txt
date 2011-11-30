@@ -254,6 +254,10 @@ if(HAPVIEWER_GUI)
 	set_target_properties(HAPviewer PROPERTIES COMPILE_FLAGS "-DGUI")
 
 	find_package(GTK2 COMPONENTS REQUIRED gtk gtkmm)
+	if(NOT GTK2_FOUND)
+		message(FATAL_ERROR "Could not find all required GTK2 components")
+	endif()
+
 	find_package(Freetype REQUIRED)
 	find_package(GVC REQUIRED)
 	find_package(Threads REQUIRED)
