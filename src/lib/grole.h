@@ -99,12 +99,14 @@ typedef uint8_t role_pattern;
 /**
  *	\typedef roleNumber
  *	\brief Number of a generated role. Used to identify the clicked node during drill-downs.
+ *	\note If this typedef ever changes, please update the typedef in ginterface.h as well.
  */
 typedef uint32_t roleNumber;
 
 /**
  *	\typedef desummarizedRoles
  *	\brief Container for role numbers, used to store the ids of all desummarized roles.
+ *	\note If this typedef ever changes, please update the typedef in ginterface.h as well.
  */
 typedef std::set<roleNumber> desummarizedRoles;
 

@@ -11,10 +11,19 @@
  */
 
 #include <string>
+#include <set>
+#include <stdint.h>
 
-#include "gimport.h"
-#include "ghpgdata.h"
-#include "grole.h"
+// forward declarations so we do not have to include all the depencies
+class CImport;
+class ChpgData;
+class prefs_t;
+class IPv6_addr;
+class CSummaryNodeInfos;
+
+// pretty much the acceptable way not to include grole.h. Needs an update if the typedefs in grole.h change.
+typedef uint32_t roleNumber;
+typedef std::set<roleNumber> desummarizedRoles;
 
 /**
  *	\class CInterface
@@ -24,7 +33,7 @@ class CInterface {
 	private:
 		CImport * flowImport; ///< Ref to data for HOST list model
 		ChpgData * hpgData; ///< Data for HPG model
-		prefs_t prefs; ///< Preferences settings
+		prefs_t * prefs; ///< Preferences settings
 
 	public:
 		CInterface();
@@ -48,8 +57,7 @@ class CInterface {
 		bool handle_hpg_import(std::string & in_filename, std::string & out_filename);
 		bool handle_binary_import(std::string & in_filename, std::string & out_filename, IPv6_addr localIP, int host_count);
 		CSummaryNodeInfos* nodeInfos; ///< Storage for nodeid filter (needed by HAP4NfSen)
-		desummarizedRoles desum_role_nums; ///< Desummarized role number
+		desummarizedRoles* desum_role_nums; ///< Desummarized role number
 };
 
-#endif
-
+#endif // GINTERFACE_H

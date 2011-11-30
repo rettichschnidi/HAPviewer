@@ -33,7 +33,6 @@ if(HAPVIEWER_DEBUG_PRINT_ALL_WARNINGS)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 endif()
 
-
 set(HAPVIEWER_CORE_CPPFILES
 	lib/IPv6_addr.cpp
 	lib/gfilter.cpp
@@ -52,20 +51,6 @@ set(HAPVIEWER_CORE_CPPFILES
 )
 set(HAPVIEWER_CORE_CPPHEADERS
 	lib/ginterface.h
-	lib/ghpgdata.h
-	lib/grole.h
-	lib/hpg.h
-	lib/gutil.h
-	lib/IPv6_addr.h
-	lib/gimport.h
-	lib/cflow.h
-	lib/HashMapE.h
-	lib/global.h
-	lib/ggraph.h
-	lib/gfilter.h
-	lib/gsummarynodeinfo.h
-	lib/lookup3.h
-	lib/HashMap.h
 )
 include_directories(
 	"${PROJECT_BINARY_DIR}/configured_files/"
@@ -260,9 +245,6 @@ if(HAPVIEWER_LIBRARY)
 
 	install (TARGETS hapviz DESTINATION lib)
 	install (FILES ${HAPVIEWER_CORE_CPPHEADERS} DESTINATION include/hapviz/)
-
-
-
 endif()
 
 if(HAPVIEWER_GUI)
@@ -283,8 +265,7 @@ if(HAPVIEWER_GUI)
 	if(${LSB_RELEASE} MATCHES "Ubuntu 8.04" OR ${DEBIAN_RELEASE} MATCHES "5.0") # if we are on Ubuntu 8.04/Debian Lenny, include this workaround (this is not future-proof!)
 		find_library(GTK_gthread_LIBRARY #Quick fix for Ubuntu 8.04/Debian Lenny.
 			NAMES gthread-2.0
-			PATHS	/usr/local/lib
-				/usr/lib
+			PATHS /usr/local/lib /usr/lib
 		)
 	endif()
 

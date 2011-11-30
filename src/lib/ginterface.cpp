@@ -11,8 +11,12 @@
 #include <netinet/in_systm.h>
 #include <sys/socket.h>
 
-#include "ginterface.h"
+
 #include "gutil.h"
+#include "gimport.h"
+#include "ghpgdata.h"
+#include "grole.h"
+#include "ginterface.h"
 
 using namespace std;
 
@@ -31,6 +35,8 @@ CInterface::CInterface() {
 	flowImport = NULL;
 	hpgData = NULL;
 	nodeInfos = NULL;
+	prefs = new prefs_t;
+	desum_role_nums = new desummarizedRoles;
 }
 
 /**
@@ -39,6 +45,15 @@ CInterface::CInterface() {
 CInterface::~CInterface() {
 	if (hap4nfsen && nodeInfos != NULL) {
 		delete nodeInfos;
+		nodeInfos = NULL;
+	}
+	if(prefs != NULL) {
+		delete prefs;
+		prefs = NULL;
+	}
+	if(desum_role_nums != NULL) {
+		delete desum_role_nums;
+		desum_role_nums = NULL;
 	}
 }
 
@@ -65,8 +80,8 @@ bool CInterface::handle_binary_import(std::string & in_filename, std::string & o
 
 	// Derive output from input file name and initialize import.
 	try {
-		flowImport = new CImport(in_filename, out_filename, prefs);
-		flowImport->set_desummarized_roles(desum_role_nums);
+		flowImport = new CImport(in_filename, out_filename, *prefs);
+		flowImport->set_desummarized_roles(*desum_role_nums);
 		flowImport->set_no_reverse_index(); // Only needed for HAPviewer operation
 	} catch (string & errtext) {
 		// Upon failed open on filename given
@@ -181,69 +196,69 @@ bool CInterface::get_graphlet(std::string in_filename, std::string & dot_filenam
       filter_flags_t filter_flags, const desummarizedRoles & desum_role_numbers) {
 	// Set summarization options
 	if (summarize_flags & summarize_client_roles) {
-		prefs.summarize_clt_roles = true;
+		prefs->summarize_clt_roles = true;
 	} else {
-		prefs.summarize_clt_roles = false;
+		prefs->summarize_clt_roles = false;
 	}
 	if (summarize_flags & summarize_multi_client_roles) {
-		prefs.summarize_multclt_roles = true;
+		prefs->summarize_multclt_roles = true;
 	} else {
-		prefs.summarize_multclt_roles = false;
+		prefs->summarize_multclt_roles = false;
 	}
 	if (summarize_flags & summarize_server_roles) {
-		prefs.summarize_srv_roles = true;
+		prefs->summarize_srv_roles = true;
 	} else {
-		prefs.summarize_srv_roles = false;
+		prefs->summarize_srv_roles = false;
 	}
 	if (summarize_flags & summarize_p2p_roles) {
-		prefs.summarize_p2p_roles = true;
+		prefs->summarize_p2p_roles = true;
 	} else {
-		prefs.summarize_p2p_roles = false;
+		prefs->summarize_p2p_roles = false;
 	}
-	prefs.summarize_biflows = true;
-	prefs.summarize_uniflows = true;
+	prefs->summarize_biflows = true;
+	prefs->summarize_uniflows = true;
 
 	// Set filter options
 	if (filter_flags & filter_biflows) {
-		prefs.filter_biflows = true;
+		prefs->filter_biflows = true;
 	} else {
-		prefs.filter_biflows = false;
+		prefs->filter_biflows = false;
 	}
 	if (filter_flags & filter_uniflows) {
-		prefs.filter_uniflows = true;
+		prefs->filter_uniflows = true;
 	} else {
-		prefs.filter_uniflows = false;
+		prefs->filter_uniflows = false;
 	}
 	if (filter_flags & filter_tcp) {
-		prefs.filter_TCP = true;
+		prefs->filter_TCP = true;
 	} else {
-		prefs.filter_TCP = false;
+		prefs->filter_TCP = false;
 	}
 	if (filter_flags & filter_udp) {
-		prefs.filter_UDP = true;
+		prefs->filter_UDP = true;
 	} else {
-		prefs.filter_UDP = false;
+		prefs->filter_UDP = false;
 	}
 	if (filter_flags & filter_icmp) {
-		prefs.filter_ICMP = true;
+		prefs->filter_ICMP = true;
 	} else {
-		prefs.filter_ICMP = false;
+		prefs->filter_ICMP = false;
 	}
 	if (filter_flags & filter_other) {
-		prefs.filter_OTHER = true;
+		prefs->filter_OTHER = true;
 	} else {
-		prefs.filter_OTHER = false;
+		prefs->filter_OTHER = false;
 	}
-	prefs.filter_unprod_inflows = false;
-	prefs.filter_unprod_outflows = false;
+	prefs->filter_unprod_inflows = false;
+	prefs->filter_unprod_outflows = false;
 	if (debug)
-		prefs.show_prefs();
+		prefs->show_prefs();
 
 	string hpg_filename = in_filename + ".hpg";
 
 	bool ok = false;
 
-	desum_role_nums.insert(desum_role_numbers.begin(), desum_role_numbers.end());
+	desum_role_nums->insert(desum_role_numbers.begin(), desum_role_numbers.end());
 
 	ok = handle_get_graphlet(in_filename, hpg_filename, dot_filename, IP_str);
 
