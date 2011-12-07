@@ -1,0 +1,20 @@
+graph G { /* Created by hpg2dot3() */
+rankdir=LR;
+node[shape=plaintext,fontsize=16];
+"localIP"--"protocol"--"localPort""localPort"--"remotePort"[label="B(pkts)"]"remotePort"--"remoteIP"[label="fl.(p./fl.)"]
+node[shape=ellipse];
+subgraph 0{rank=same;"localIP";k1_2690842548;}
+k1_2690842548[label="160.98.255.180"];
+k1_2690842548--k2_6;
+subgraph 1 {rank=same;"protocol";k2_6;}
+k2_6[label="TCP"];
+k2_6--k3_268435901;
+subgraph 2 {rank=same;"localPort";k3_268435901;}
+k3_268435901[label="445"];
+k3_268435901--k4_1107492965[dir=back, color=red][label="14782(307)"];
+subgraph 3 {rank=same;"remotePort";k4_1107492965;}
+k4_1107492965[label="#con=101", shape=box, style=bold];
+k4_1107492965--k5_196707[color=red][label="101(3)"];
+subgraph 4 {rank=same;"remoteIP";k5_196707;}
+k5_196707[label="#hosts=99", shape=box, style=bold];
+}

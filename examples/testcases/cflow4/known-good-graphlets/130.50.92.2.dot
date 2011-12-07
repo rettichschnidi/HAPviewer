@@ -1,0 +1,66 @@
+graph G { /* Created by hpg2dot3() */
+rankdir=LR;
+node[shape=plaintext,fontsize=16];
+"localIP"--"protocol"--"localPort""localPort"--"remotePort"[label="B(pkts)"]"remotePort"--"remoteIP"[label="fl.(p./fl.)"]
+node[shape=ellipse];
+subgraph 0{rank=same;"localIP";k1_2184338434;}
+k1_2184338434[label="130.50.92.2"];
+k1_2184338434--k2_6;
+k1_2184338434--k2_17;
+subgraph 1 {rank=same;"protocol";k2_6;k2_17;}
+k2_6[label="TCP"];
+k2_17[label="UDP"];
+k2_6--k3_268442155;
+k2_17--k3_6257;
+k2_6--k3_268436505;
+k2_6--k3_275841029;
+k2_6--k3_275775499;
+subgraph 2 {rank=same;"localPort";k3_275775499;k3_275841029;k3_6257;k3_268442155;k3_268436505;}
+k3_275775499[label="#con=11", shape=box, style=bold];
+k3_275841029[label="#con=5", shape=box, style=bold];
+k3_6257[label="6257"];
+k3_268442155[label="6699"];
+k3_268436505[label="1049"];
+k3_268436505--k4_268440646[style=bold,dir=both][label="384(6)"];
+k3_275841029--k4_268507691[style=bold,dir=both][label="6281442(720433)"];
+k3_275775499--k4_268566608[style=bold,dir=both][label="432916(606)"];
+k3_6257--k4_1107493309[dir=back, color=red][label="374140(1585)"];
+k3_268442155--k4_73990154[style=bold,dir=both][label="9022967(17872)"];
+k3_6257--k4_1091960844[dir=forward, color=red][label="34517(200)"];
+k3_6257--k4_2319908866[dir=back, color=green][label="245(2)"];
+k3_6257--k4_67436665[style=bold,dir=both][label="100920(1211)"];
+subgraph 3 {rank=same;"remotePort";k4_1107493309;k4_67436665;k4_268566608;k4_268440646;k4_268507691;k4_1091960844;k4_2319908866;k4_73990154;}
+k4_1107493309[label="#con=445", shape=box, style=bold];
+k4_67436665[label="#con=121", shape=box, style=bold];
+k4_268566608[label="80"];
+k4_268440646[label="5190"];
+k4_268507691[label="6699"];
+k4_1091960844[label="#con=12", shape=box, style=bold];
+k4_2319908866[label="#con=2", shape=box, style=bold];
+k4_73990154[label="#con=10", shape=box, style=bold];
+k4_268440646--k5_3447900210[label="1(6)"];
+k4_268507691--k5_40960003[label="3(235069)"];
+k4_268507691--k5_4294901762[label="2(7613.5)"];
+k4_268566608--k5_40894468[label="11(55)"];
+k4_73990154--k5_4294770690[label="2(1772)"];
+k4_2319908866--k5_4294836226[color=green][label="2(1)"];
+k4_67436665--k5_327795[label="115(10.2)"];
+k4_1107493309--k5_197052[color=red][label="445(3.5)"];
+k4_67436665--k5_4294836226[label="2(8)"];
+k4_67436665--k5_4294770690[label="2(4)"];
+k4_1091960844--k5_1441804[color=red][label="12(16.6)"];
+k4_67436665--k5_4294901762[label="2(3.5)"];
+k4_73990154--k5_6881288[label="8(1791)"];
+subgraph 4 {rank=same;"remoteIP";k5_4294770690;k5_4294901762;k5_40894468;k5_1441804;k5_197052;k5_6881288;k5_4294901762;k5_4294836226;k5_327795;k5_3447900210;k5_40960003;}
+k5_4294770690[label="#hosts=2", shape=box, style=bold];
+k5_4294901762[label="#hosts=2", shape=box, style=bold];
+k5_40894468[label="#hosts=4", shape=box, style=bold];
+k5_1441804[label="#hosts=12", shape=box, style=bold];
+k5_197052[label="#hosts=444", shape=box, style=bold];
+k5_6881288[label="#hosts=8", shape=box, style=bold];
+k5_4294901762[label="#hosts=2", shape=box, style=bold];
+k5_4294836226[label="#hosts=2", shape=box, style=bold];
+k5_327795[label="#hosts=115", shape=box, style=bold];
+k5_3447900210[label="205.130.200.50"];
+k5_40960003[label="#hosts=3", shape=box, style=bold];
+}
