@@ -14,7 +14,7 @@
 #ifdef GUI
 const bool hap4nfsen = false;
 #else
-const bool hap4nfsen = true;
+const bool hap4nfsen = false;
 #endif
 
 //( tab width: 3)
