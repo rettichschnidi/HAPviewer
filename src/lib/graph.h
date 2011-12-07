@@ -17,11 +17,21 @@
 
 struct FlowGraph {
 	public:
-		FlowGraph(std::string localIPLabel = "", std::string localIPShape = "", std::string protocolLabel = "", std::string protocolShape = "",
-		      std::string localPortLabel = "", std::string localPortShape = "", std::string localPort2RemotePortLabel = "",
-		      std::string localPort2RemotePortDirection = "", std::string localPort2RemotePortColor = "", std::string remotePortLabel = "",
-		      std::string remotePortShape = "", std::string remotePort2RemoteIPLabel = "", std::string remotePort2RemoteIPColor = "", std::string remoteIPLabel =
-		            "", std::string remoteIPShape = "");
+		FlowGraph(std::string localIPLabel = "",
+					std::string localIPShape = "",
+					std::string protocolLabel = "",
+					std::string protocolShape = "",
+					std::string localPortLabel = "",
+					std::string localPortShape = "",
+					std::string localPort2RemotePortLabel = "",
+					std::string localPort2RemotePortDirection = "",
+					std::string localPort2RemotePortColor = "",
+					std::string remotePortLabel = "",
+					std::string remotePortShape = "",
+					std::string remotePort2RemoteIPLabel = "",
+					std::string remotePort2RemoteIPColor = "",
+					std::string remoteIPLabel = "",
+					std::string remoteIPShape = "");
 		bool operator==(const FlowGraph &other) const;
 		bool operator<(const FlowGraph &other) const;
 
@@ -142,23 +152,46 @@ class DotGraph {
 
 	public:
 		// Vertex properties
-		typedef boost::property<boost::vertex_name_t, std::string, boost::property<boost::vertex_color_t, std::string, boost::property<vertex_url_t, std::string,
-		      boost::property<vertex_fontsize_t, int, boost::property<vertex_label_t, std::string, boost::property<vertex_draw_t, std::string, boost::property<
-		            vertex_ldraw_t, std::string, boost::property<vertex_height_t, double, boost::property<vertex_width_t, double, boost::property<vertex_pos_t,
-		                  std::string, boost::property<vertex_style_t, std::string, boost::property<vertex_shape_t, std::string, boost::property<vertex_rolnum_t,
-		                        signed int, boost::property<vertex_ip_t, std::string, boost::property<vertex_fontname_t, std::string> > > > > > > > > > > > > > >
-		      VertexProperty;
+		typedef boost::property<boost::vertex_name_t, std::string,
+				boost::property<boost::vertex_color_t, std::string,
+				boost::property<vertex_url_t, std::string,
+				boost::property<vertex_fontsize_t, int,
+				boost::property<vertex_label_t, std::string,
+				boost::property<vertex_draw_t, std::string,
+				boost::property<vertex_ldraw_t, std::string,
+				boost::property<vertex_height_t, double,
+				boost::property<vertex_width_t, double,
+				boost::property<vertex_pos_t,std::string,
+				boost::property<vertex_style_t, std::string,
+				boost::property<vertex_shape_t, std::string,
+				boost::property<vertex_rolnum_t, signed int,
+				boost::property<vertex_ip_t, std::string,
+				boost::property<vertex_fontname_t, std::string
+			> > > > > > > > > > > > > > > VertexProperty;
 
 		// Edge properties
-		typedef boost::property<boost::edge_color_t, std::string, boost::property<edge_dir_t, std::string, boost::property<edge_label_t, std::string,
-		      boost::property<edge_style_t, std::string, boost::property<edge_draw_t, std::string, boost::property<edge_pos_t, std::string, boost::property<
-		            edge_hdraw_t, std::string, boost::property<edge_tdraw_t, std::string, boost::property<edge_ldraw_t, std::string, boost::property<edge_lp_t,
-		                  std::string> > > > > > > > > > EdgeProperty;
+		typedef boost::property<boost::edge_color_t, std::string,
+				boost::property<edge_dir_t, std::string,
+				boost::property<edge_label_t, std::string,
+				boost::property<edge_style_t, std::string,
+				boost::property<edge_draw_t, std::string,
+				boost::property<edge_pos_t, std::string,
+				boost::property<edge_hdraw_t, std::string,
+				boost::property<edge_tdraw_t, std::string,
+				boost::property<edge_ldraw_t, std::string,
+				boost::property<edge_lp_t, std::string
+			> > > > > > > > > > EdgeProperty;
 
 		// Graph properties
-		typedef boost::property<boost::graph_name_t, std::string, boost::property<graph_rankdir_t, std::string, boost::property<graph_rank_t, std::string,
-		      boost::property<graph_draw_t, std::string, boost::property<graph_bb_t, std::string, boost::property<graph_xdotversion_t, std::string,
-		            boost::property<graph_shape_t, std::string, boost::property<graph_style_t, std::string> > > > > > > > GraphProperty;
+		typedef boost::property<boost::graph_name_t, std::string,
+				boost::property<graph_rankdir_t, std::string,
+				boost::property<graph_rank_t, std::string,
+				boost::property<graph_draw_t, std::string,
+				boost::property<graph_bb_t, std::string,
+				boost::property<graph_xdotversion_t, std::string,
+				boost::property<graph_shape_t, std::string,
+				boost::property<graph_style_t, std::string
+			> > > > > > > > GraphProperty;
 
 		// adjacency_list-based type
 		typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS, VertexProperty, EdgeProperty, GraphProperty> BoostGraph;
@@ -205,14 +238,16 @@ class DotGraph {
 		typedef boost::graph_traits<BoostGraph>::vertex_descriptor Vertex;
 		typedef boost::graph_traits<BoostGraph>::edge_iterator GraphEdgeIterator;
 		typedef boost::graph_traits<BoostGraph>::edge_descriptor Edge;
+		typedef std::multiset<FlowGraph> FlowContainer;
 
 	public:
 		DotGraph(std::ifstream & dotInputStream);
-		bool equal(DotGraph & other);
+		bool equalVerbose(DotGraph & other);
 		bool isomorphism(DotGraph & other);
-		void buildFlowset(Vertex v, FlowGraph &prototype, unsigned int space, std::multiset<FlowGraph> &results);
+		void buildFlowset(Vertex v, FlowGraph &prototype, unsigned int space, FlowContainer &results);
 
 	private:
+		bool equal(DotGraph & other, FlowContainer &thisUnmatched, FlowContainer &otherUnmatched);
 		void prepareGraphProperties();
 		static GraphVertexIterator findLocalIP(DotGraph &graph);
 		void importDotGraph(std::ifstream & dotInputStream);

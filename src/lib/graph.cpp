@@ -23,13 +23,36 @@
 using namespace std;
 using namespace boost;
 
-FlowGraph::FlowGraph(string localIPLabel, string localIPShape, string protocolLabel, string protocolShape, string localPortLabel, string localPortShape,
-      string localPort2RemotePortLabel, string localPort2RemotePortDirection, string localPort2RemotePortColor, string remotePortLabel, string remotePortShape,
-      string remotePort2RemoteIPLabel, string remotePort2RemoteIPColor, string remoteIPLabel, string remoteIPShape) :
-	localIPLabel(localIPLabel), localIPShape(localIPShape), protocolLabel(protocolLabel), protocolShape(protocolShape), localPortLabel(localPortLabel),
-	      localPortShape(localPortShape), localPort2RemotePortLabel(localPort2RemotePortLabel), localPort2RemotePortDirection(localPort2RemotePortDirection),
-	      localPort2RemotePortColor(localPort2RemotePortColor), remotePortLabel(remotePortLabel), remotePortShape(remotePortShape), remotePort2RemoteIPLabel(
-	            remotePort2RemoteIPLabel), remotePort2RemoteIPColor(remotePort2RemoteIPColor), remoteIPLabel(remoteIPLabel), remoteIPShape(remoteIPShape) {
+FlowGraph::FlowGraph(string localIPLabel,
+		string localIPShape,
+		string protocolLabel,
+		string protocolShape,
+		string localPortLabel,
+		string localPortShape,
+		string localPort2RemotePortLabel,
+		string localPort2RemotePortDirection,
+		string localPort2RemotePortColor,
+		string remotePortLabel,
+		string remotePortShape,
+		string remotePort2RemoteIPLabel,
+		string remotePort2RemoteIPColor,
+		string remoteIPLabel,
+		string remoteIPShape) :
+			localIPLabel(localIPLabel),
+			localIPShape(localIPShape),
+			protocolLabel(protocolLabel),
+			protocolShape(protocolShape),
+			localPortLabel(localPortLabel),
+			localPortShape(localPortShape),
+			localPort2RemotePortLabel(localPort2RemotePortLabel),
+			localPort2RemotePortDirection(localPort2RemotePortDirection),
+			localPort2RemotePortColor(localPort2RemotePortColor),
+			remotePortLabel(remotePortLabel),
+			remotePortShape(remotePortShape),
+			remotePort2RemoteIPLabel(remotePort2RemoteIPLabel),
+			remotePort2RemoteIPColor(remotePort2RemoteIPColor),
+			remoteIPLabel(remoteIPLabel),
+			remoteIPShape(remoteIPShape) {
 }
 
 bool FlowGraph::operator==(const FlowGraph &other) const {
@@ -67,35 +90,35 @@ bool FlowGraph::operator==(const FlowGraph &other) const {
 }
 
 bool FlowGraph::operator<(const FlowGraph &other) const {
-	if (localIPLabel < other.localIPLabel)
+	if (localIPLabel.compare(other.localIPLabel) < 0)
 		return true;
-	if (localIPShape < other.localIPShape)
+	if (localIPShape.compare(localIPShape) < 0)
 		return true;
-	if (protocolLabel < other.protocolLabel)
+	if (protocolLabel.compare(protocolLabel) < 0)
 		return true;
-	if (protocolShape < other.protocolShape)
+	if (protocolShape.compare(protocolShape) < 0)
 		return true;
-	if (localPortLabel < other.localPortLabel)
+	if (localPortLabel.compare(localPortLabel) < 0)
 		return true;
-	if (localPortShape < other.localPortShape)
+	if (localPortShape.compare(localPortShape) < 0)
 		return true;
-	if (localPort2RemotePortLabel < other.localPort2RemotePortLabel)
+	if (localPort2RemotePortLabel.compare(localPort2RemotePortLabel) < 0)
 		return true;
-	if (localPort2RemotePortDirection < other.localPort2RemotePortDirection)
+	if (localPort2RemotePortDirection.compare(localPort2RemotePortDirection) < 0)
 		return true;
-	if (localPort2RemotePortColor < other.localPort2RemotePortColor)
+	if (localPort2RemotePortColor.compare(localPort2RemotePortColor) < 0)
 		return true;
-	if (remotePortLabel < other.remotePortLabel)
+	if (remotePortLabel.compare(remotePortLabel) < 0)
 		return true;
-	if (remotePortShape < other.remotePortShape)
+	if (remotePortShape.compare(remotePortShape) < 0)
 		return true;
-	if (remotePort2RemoteIPLabel < other.remotePort2RemoteIPLabel)
+	if (remotePort2RemoteIPLabel.compare(remotePort2RemoteIPLabel) < 0)
 		return true;
-	if (remotePort2RemoteIPColor < other.remotePort2RemoteIPColor)
+	if (remotePort2RemoteIPColor.compare(remotePort2RemoteIPColor) < 0)
 		return true;
-	if (remoteIPLabel < other.remoteIPLabel)
+	if (remoteIPLabel.compare(remoteIPLabel) < 0)
 		return true;
-	if (remoteIPShape < other.remoteIPShape)
+	if (remoteIPShape.compare(remoteIPShape) < 0)
 		return true;
 	return false;
 }
@@ -265,45 +288,60 @@ void DotGraph::prepareGraphProperties() {
 }
 
 /**
- * Compare two graphviz dot graph
+ * Compare two graphviz dot graph. // TODO: have to elaborate more what we do in here
  *
  * \param other Graph to compare to
  *
  * \return bool True if both graphs are equal
  */
-bool DotGraph::equal(DotGraph &other) {
-	if (!isomorphism(other)) {
-		return false;
-	}
-	GraphVertexIterator this_vertex_iterator_begin, this_vertex_iterator_end, other_vertex_iterator_begin, other_vertex_iterator_end;
-	GraphEdgeIterator this_edge_iterator_begin, this_edge_iterator_end, other_edge_iterator_begin, other_edge_iterator_end;
-
-	boost::tie(this_vertex_iterator_begin, this_vertex_iterator_end) = vertices(graph);
-	boost::tie(other_vertex_iterator_begin, other_vertex_iterator_end) = vertices(other.graph);
-
-	property_map<BoostGraph, vertex_name_t>::type this_name_map = get(vertex_name, graph);
-
+bool DotGraph::equal(DotGraph &other, FlowContainer &thisUnmatched, FlowContainer &otherUnmatched) {
+	FlowGraph temporaryFlowGraph;
 	GraphVertexIterator this_lIP = findLocalIP(*this);
 	GraphVertexIterator other_lIP = findLocalIP(other);
-	cout << "localIP: " << vertices_label[*this_lIP] << ", " << vertices_name[*this_lIP] << endl;
-	cout << "localIP: " << vertices_label[*other_lIP] << ", " << vertices_name[*other_lIP] << endl;
 
-	FlowGraph this_temp_fg, other_temp_fg;
-	multiset<FlowGraph> this_results, other_results, difference;
-	this->buildFlowset(*this_lIP, this_temp_fg, 1, this_results);
-	other.buildFlowset(*other_lIP, other_temp_fg, 1, other_results);
+	this->buildFlowset(*this_lIP, temporaryFlowGraph, 1, thisUnmatched);
+	other.buildFlowset(*other_lIP, temporaryFlowGraph, 1, otherUnmatched);
 
-	std::set_difference(this_results.begin(), this_results.end(), other_results.begin(), other_results.end(), std::inserter(difference, difference.end()));
-
-	cout << "Difference: " << difference.size() << endl;
-	for (multiset<FlowGraph>::iterator it = difference.begin(); it != difference.end(); it++) {
-		it->print(cout);
-		cout << endl;
+	for (FlowContainer::iterator thisit = thisUnmatched.begin(); thisit != thisUnmatched.end();) { // TODO: would std::set_difference do the job as well?
+		FlowContainer::iterator otherit;
+		if ((otherit = otherUnmatched.find(*thisit)) != otherUnmatched.end()) {
+			otherUnmatched.erase(otherit);
+			thisUnmatched.erase(thisit++);
+		} else {
+			thisit++;
+		}
 	}
-	return difference.empty();
+
+	return thisUnmatched.empty() && otherUnmatched.empty();
 }
 
-void DotGraph::buildFlowset(Vertex v, FlowGraph &prototype, unsigned int k_level, multiset<FlowGraph> &results) {
+bool DotGraph::equalVerbose(DotGraph &other) {
+	if (!isomorphism(other)) {
+		cout << "Graphs are not isomorph!" << endl;
+		return false;
+	}
+
+	FlowContainer thisUnmatched, otherUnmatched;
+	bool isEqual = equal(other, thisUnmatched, otherUnmatched);
+	if(isEqual) {
+		return true;
+	} else {
+		cout << "Graphs are not equal." << endl;
+		cout << "Unmatched flows on first graph: " << endl;
+		for(FlowContainer::iterator it = thisUnmatched.begin(); it != thisUnmatched.end(); it++) {
+			it->print(cout);
+			cout << endl;
+		}
+		cout << "Unmatched flows on second graph: " << endl;
+		for(FlowContainer::iterator it = thisUnmatched.begin(); it != thisUnmatched.end(); it++) {
+			it->print(cout);
+			cout << endl;
+		}
+	}
+	return false;
+}
+
+void DotGraph::buildFlowset(Vertex v, FlowGraph &prototype, unsigned int k_level, FlowContainer &results) {
 	BoostGraph::out_edge_iterator a, b;
 	boost::tie(a, b) = out_edges(v, graph);
 	property_map<BoostGraph, vertex_name_t>::type this_name_map = get(vertex_name, graph);

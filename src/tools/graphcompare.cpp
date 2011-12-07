@@ -1,3 +1,10 @@
+/**
+ *	\file graphcompare.cpp
+ *
+ * 	This file is subject to the terms and conditions defined in
+ * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
+ */
+
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -12,18 +19,25 @@ int main(int argc, char **argv) {
 		exit(1);
 	}
 
-	ifstream inputA(argv[1]);
-	ifstream inputB(argv[2]);
-
 	try {
+		ifstream inputA(argv[1]);
+		ifstream inputB(argv[2]);
+
 		DotGraph graphA(inputA);
 		DotGraph graphB(inputB);
 
-		cout << "Test for equality: ";
-		bool equality = graphA.equal(graphB);
-		cout << "Graphs are" << (equality ? "" : " not") << " equal" << endl;
+		bool equality = graphA.equalVerbose(graphB);
+		if (equality) {
+			cout << "Graphs are equal." << endl;
+			return 0;
+		} else {
+			return 1;
+		}
 	} catch (std::string &e) {
-		cerr << e << endl;
+		cerr << "Error: " << e << endl;
+		return 111;
+	} catch (...) {
+		cerr << "Unknown error..." << endl;
+		return 112;
 	}
-	return 1;
 }
