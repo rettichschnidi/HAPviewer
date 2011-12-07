@@ -37,7 +37,7 @@ const bool dbg2 = true;
  *
  *	\exception string Errormessage
  */
-CGraphlet::CGraphlet(std::string hpg_filename, CRoleMembership & roleMembership) {
+CGraphlet::CGraphlet(std::string hpg_filename, CRoleMembership & roleMembership): nodeInfos(NULL) {
 	proleMembership = &roleMembership;
 
 	// Open output file to write hpg graphlet edges to.
