@@ -92,33 +92,33 @@ bool FlowGraph::operator==(const FlowGraph &other) const {
 bool FlowGraph::operator<(const FlowGraph &other) const {
 	if (localIPLabel.compare(other.localIPLabel) < 0)
 		return true;
-	if (localIPShape.compare(localIPShape) < 0)
+	if (localIPShape.compare(other.localIPShape) < 0)
 		return true;
-	if (protocolLabel.compare(protocolLabel) < 0)
+	if (protocolLabel.compare(other.protocolLabel) < 0)
 		return true;
-	if (protocolShape.compare(protocolShape) < 0)
+	if (protocolShape.compare(other.protocolShape) < 0)
 		return true;
-	if (localPortLabel.compare(localPortLabel) < 0)
+	if (localPortLabel.compare(other.localPortLabel) < 0)
 		return true;
-	if (localPortShape.compare(localPortShape) < 0)
+	if (localPortShape.compare(other.localPortShape) < 0)
 		return true;
-	if (localPort2RemotePortLabel.compare(localPort2RemotePortLabel) < 0)
+	if (localPort2RemotePortLabel.compare(other.localPort2RemotePortLabel) < 0)
 		return true;
-	if (localPort2RemotePortDirection.compare(localPort2RemotePortDirection) < 0)
+	if (localPort2RemotePortDirection.compare(other.localPort2RemotePortDirection) < 0)
 		return true;
-	if (localPort2RemotePortColor.compare(localPort2RemotePortColor) < 0)
+	if (localPort2RemotePortColor.compare(other.localPort2RemotePortColor) < 0)
 		return true;
-	if (remotePortLabel.compare(remotePortLabel) < 0)
+	if (remotePortLabel.compare(other.remotePortLabel) < 0)
 		return true;
-	if (remotePortShape.compare(remotePortShape) < 0)
+	if (remotePortShape.compare(other.remotePortShape) < 0)
 		return true;
-	if (remotePort2RemoteIPLabel.compare(remotePort2RemoteIPLabel) < 0)
+	if (remotePort2RemoteIPLabel.compare(other.remotePort2RemoteIPLabel) < 0)
 		return true;
-	if (remotePort2RemoteIPColor.compare(remotePort2RemoteIPColor) < 0)
+	if (remotePort2RemoteIPColor.compare(other.remotePort2RemoteIPColor) < 0)
 		return true;
-	if (remoteIPLabel.compare(remoteIPLabel) < 0)
+	if (remoteIPLabel.compare(other.remoteIPLabel) < 0)
 		return true;
-	if (remoteIPShape.compare(remoteIPShape) < 0)
+	if (remoteIPShape.compare(other.remoteIPShape) < 0)
 		return true;
 	return false;
 }
