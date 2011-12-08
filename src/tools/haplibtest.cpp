@@ -40,10 +40,10 @@ int main(int argc, char * argv[]) {
 				("ip", boost::program_options::value<string>(), "Host IP address")
 				("rolenum", boost::program_options::value<unsigned int>(&filter_up_to_rolenum)->default_value(0), "Unsummarize any role up to rolenum")
 
-				("notcp", "Filter TCP traffic, overrides the tcponly flags")
-				("noicmp", "Filter ICMP traffic, overrides the udponly flags")
-				("noudp", "Filter UDP traffic, overrides the icmponly flags")
-				("noother", "Filter UDP traffic, overrides the otheronly flags")
+				("notcp", "Filter TCP traffic, overrides the tcponly flag")
+				("noicmp", "Filter ICMP traffic, overrides the icmponly flag")
+				("noudp", "Filter UDP traffic, overrides the icmponly flag")
+				("noother", "Filter UDP traffic, overrides the otheronly flag")
 
 				("tcponly", "Show only TCP traffic")
 				("udponly", "Show only UDP traffic")
@@ -52,10 +52,10 @@ int main(int argc, char * argv[]) {
 
 				("nosummarize", "Do not summarize per default (default: summarize all roles)")
 
-				("nosumserverroles", "Summarize server roles")
-				("nosumclientroles", "Summarize client roles")
-				("nosump2proles", "Summarize peer 2 peer roles")
-				("nosummulticlientroles", "Summarize multiclient roles")
+				("nosumserverroles", "Desummarize server roles, overrides the sumserverroles flag")
+				("nosumclientroles", "Desummarize client roles, overrides the sumclientroles flag")
+				("nosump2proles", "Desummarize peer 2 peer roles, overrides the sump2proles flag")
+				("nosummulticlientroles", "Desummarize multiclient roles, overrides the summulticlientroles flag")
 
 				("sumserverroles", "Summarize server roles")
 				("sumclientroles", "Summarize client roles")
@@ -73,7 +73,7 @@ int main(int argc, char * argv[]) {
 		boost::program_options::store(boost::program_options::command_line_parser(argc, argv).options(desc).positional(posOpt).run(), variablesMap);
 		boost::program_options::notify(variablesMap);
 	} catch (std::exception & e) {
-		std::cerr << "Error: " << e.what() << std::endl;
+		cerr << "Error: " << e.what() << endl;
 		exit(1);
 	}
 
@@ -102,13 +102,13 @@ int main(int argc, char * argv[]) {
 		exit(1);
 	}
 
-	if(variablesMap.count("tcponly")) {
+	if(variablesMap.count("tcponly") && !variablesMap.count("notcp")) {
 		filters = static_cast<CInterface::filter_flags_t>(CInterface::filter_icmp + CInterface::filter_other + CInterface::filter_udp);
-	} else if(variablesMap.count("udponly")) {
+	} else if(variablesMap.count("udponly") && !variablesMap.count("noudp")) {
 		filters = static_cast<CInterface::filter_flags_t>(CInterface::filter_icmp + CInterface::filter_other + CInterface::filter_tcp);
-	} else if(variablesMap.count("icmponly")) {
+	} else if(variablesMap.count("icmponly") && !variablesMap.count("noicmp")) {
 		filters = static_cast<CInterface::filter_flags_t>(CInterface::filter_udp + CInterface::filter_other + CInterface::filter_tcp);
-	} else if(variablesMap.count("otheronly")) {
+	} else if(variablesMap.count("otheronly") && !variablesMap.count("noother")) {
 		filters = static_cast<CInterface::filter_flags_t>(CInterface::filter_udp + CInterface::filter_icmp + CInterface::filter_tcp);
 	}
 
@@ -177,7 +177,7 @@ int main(int argc, char * argv[]) {
 	bool ok = libif.get_graphlet(in_filename, outfilename, IP_str, sum_flags, filters, role_nums);
 
 	if (!ok) {
-		cerr << "ERROR: could not create a dot file from input data.\n";
+		cerr << "ERROR: could not create a dot file from input data." << endl;
 		return 1;
 	} else {
 		cout << "Successfully created file " << outfilename << endl;
