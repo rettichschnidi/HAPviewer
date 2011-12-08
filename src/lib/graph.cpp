@@ -378,7 +378,7 @@ bool DotGraph::equalVerbose(DotGraph &other) {
 			cout << endl;
 		}
 		cout << "Unmatched flows on second graph: " << endl;
-		for(FlowContainer::iterator it = thisUnmatched.begin(); it != thisUnmatched.end(); it++) {
+		for(FlowContainer::iterator it = otherUnmatched.begin(); it != otherUnmatched.end(); it++) {
 			it->print(cout);
 			cout << endl;
 		}
