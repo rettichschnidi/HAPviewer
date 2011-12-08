@@ -92,34 +92,79 @@ bool FlowGraph::operator==(const FlowGraph &other) const {
 bool FlowGraph::operator<(const FlowGraph &other) const {
 	if (localIPLabel.compare(other.localIPLabel) < 0)
 		return true;
+	else if (localIPLabel.compare(other.localIPLabel) > 0)
+		return false;
+
 	if (localIPShape.compare(other.localIPShape) < 0)
 		return true;
+	else if (localIPShape.compare(other.localIPShape) > 0)
+		return false;
+
 	if (protocolLabel.compare(other.protocolLabel) < 0)
 		return true;
+	else if (protocolLabel.compare(other.protocolLabel) > 0)
+		return false;
+
 	if (protocolShape.compare(other.protocolShape) < 0)
 		return true;
+	else if (protocolShape.compare(other.protocolShape) > 0)
+		return false;
+
 	if (localPortLabel.compare(other.localPortLabel) < 0)
 		return true;
+	else if (localPortLabel.compare(other.localPortLabel) > 0)
+		return false;
+
 	if (localPortShape.compare(other.localPortShape) < 0)
 		return true;
+	else if (localPortShape.compare(other.localPortShape) > 0)
+		return false;
+
 	if (localPort2RemotePortLabel.compare(other.localPort2RemotePortLabel) < 0)
 		return true;
+	else if (localPort2RemotePortLabel.compare(other.localPort2RemotePortLabel) > 0)
+		return false;
+
 	if (localPort2RemotePortDirection.compare(other.localPort2RemotePortDirection) < 0)
 		return true;
+	else if (localPort2RemotePortDirection.compare(other.localPort2RemotePortDirection) > 0)
+		return false;
+
 	if (localPort2RemotePortColor.compare(other.localPort2RemotePortColor) < 0)
 		return true;
+	else if (localPort2RemotePortColor.compare(other.localPort2RemotePortColor) > 0)
+		return false;
+
 	if (remotePortLabel.compare(other.remotePortLabel) < 0)
 		return true;
+	else if (remotePortLabel.compare(other.remotePortLabel) > 0)
+		return false;
+
 	if (remotePortShape.compare(other.remotePortShape) < 0)
 		return true;
+	else if (remotePortShape.compare(other.remotePortShape) > 0)
+		return false;
+
 	if (remotePort2RemoteIPLabel.compare(other.remotePort2RemoteIPLabel) < 0)
 		return true;
+	else if (remotePort2RemoteIPLabel.compare(other.remotePort2RemoteIPLabel) > 0)
+		return false;
+
 	if (remotePort2RemoteIPColor.compare(other.remotePort2RemoteIPColor) < 0)
 		return true;
+	else if (remotePort2RemoteIPColor.compare(other.remotePort2RemoteIPColor) > 0)
+		return false;
+
 	if (remoteIPLabel.compare(other.remoteIPLabel) < 0)
 		return true;
+	else if (remoteIPLabel.compare(other.remoteIPLabel) > 0)
+		return false;
+
 	if (remoteIPShape.compare(other.remoteIPShape) < 0)
 		return true;
+	else if (remoteIPShape.compare(other.remoteIPShape) > 0)
+		return false;
+
 	return false;
 }
 
@@ -294,25 +339,25 @@ void DotGraph::prepareGraphProperties() {
  *
  * \return bool True if both graphs are equal
  */
-bool DotGraph::equal(DotGraph &other, FlowContainer &thisUnmatched, FlowContainer &otherUnmatched) {
+bool DotGraph::equal(DotGraph &other, FlowContainer &thisFlows, FlowContainer &otherFlows) {
 	FlowGraph temporaryFlowGraph;
 	GraphVertexIterator this_lIP = findLocalIP(*this);
 	GraphVertexIterator other_lIP = findLocalIP(other);
 
-	this->buildFlowset(*this_lIP, temporaryFlowGraph, 1, thisUnmatched);
-	other.buildFlowset(*other_lIP, temporaryFlowGraph, 1, otherUnmatched);
+	this->buildFlowset(*this_lIP, temporaryFlowGraph, 1, thisFlows);
+	other.buildFlowset(*other_lIP, temporaryFlowGraph, 1, otherFlows);
 
-	for (FlowContainer::iterator thisit = thisUnmatched.begin(); thisit != thisUnmatched.end();) { // TODO: would std::set_difference do the job as well?
-		FlowContainer::iterator otherit;
-		if ((otherit = otherUnmatched.find(*thisit)) != otherUnmatched.end()) {
-			otherUnmatched.erase(otherit);
-			thisUnmatched.erase(thisit++);
+	for (FlowContainer::iterator thisit = thisFlows.begin(); thisit != thisFlows.end();) { // TODO: would std::set_difference do the job as well?
+		FlowContainer::iterator otherit = otherFlows.find(*thisit);
+		if (otherit != otherFlows.end()) {
+			otherFlows.erase(otherit);
+			thisFlows.erase(thisit++);
 		} else {
 			thisit++;
 		}
 	}
 
-	return thisUnmatched.empty() && otherUnmatched.empty();
+	return thisFlows.empty() && otherFlows.empty();
 }
 
 bool DotGraph::equalVerbose(DotGraph &other) {
