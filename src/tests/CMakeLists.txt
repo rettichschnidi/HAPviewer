@@ -1,7 +1,6 @@
 cmake_minimum_required (VERSION 2.6)
 
 #include all test files
-#file(GLOB test_sources test_*.cpp)
 set(test_sources "test_gfilter.cpp")
 set(test_sources ${test_sources} "test_gutil.cpp")
 set(test_sources ${test_sources} "test_HashMapE.cpp")
@@ -34,4 +33,64 @@ foreach(test ${test_sources} )
 	)
 	add_test(test_${noext} ${EXECUTABLE_OUTPUT_PATH}/testexe_${noext})
 	set_tests_properties(test_${noext} PROPERTIES FAIL_REGULAR_EXPRESSION "failure") #this test fails if cute detects an error
+endforeach()
+
+#test graphcompare with all available examples
+set(GRAPHS_NOT_EQUAL "Graphs are not equal.")
+set(GRAPHS_EQUAL "Graphs are equal.")
+set(GRAPHS_NOT_ISOMORPH "Graphs are not isomorph!")
+file(GLOB graphcompare_testgraphs ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/*.dot)
+foreach(testgraph ${graphcompare_testgraphs})
+	string(REGEX REPLACE "(\\/.*\\/)([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+\\.dot)" "\\2" dotfile "${testgraph}")
+
+	add_test(graphcompare_equal_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${testgraph})
+	set_tests_properties(graphcompare_equal_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_EQUAL}")
+	
+	add_test(graphcompare_changed_iplabel_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_localIPLabel/${dotfile})
+	set_tests_properties(graphcompare_changed_iplabel_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+
+	add_test(graphcompare_changed_ipshape_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_localIPShape/${dotfile})
+	set_tests_properties(graphcompare_changed_ipshape_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_changed_localport2remoteportcolor_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_localPort2RemotePortColor/${dotfile})
+	set_tests_properties(graphcompare_changed_localport2remoteportcolor_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_changed_localport2remoteportdirection_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_localPort2RemotePortDirection/${dotfile})
+	set_tests_properties(graphcompare_changed_localport2remoteportdirection_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_changed_localport2remoteportlabel_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_localPort2RemotePortLabel/${dotfile})
+	set_tests_properties(graphcompare_changed_localport2remoteportlabel_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_changed_localportlabel_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_localPortLabel/${dotfile})
+	set_tests_properties(graphcompare_changed_localportlabel_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_changed_localportshape_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_localPortShape/${dotfile})
+	set_tests_properties(graphcompare_changed_localportshape_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_changed_protocollabel_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_protocolLabel/${dotfile})
+	set_tests_properties(graphcompare_changed_protocollabel_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_changed_protocolshape_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_protocolShape/${dotfile})
+	set_tests_properties(graphcompare_changed_protocolshape_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_changed_remoteiplabel_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_remoteIPLabel/${dotfile})
+	set_tests_properties(graphcompare_changed_remoteiplabel_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_changed_remoteipshape_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_remoteIPShape/${dotfile})
+	set_tests_properties(graphcompare_changed_remoteipshape_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_changed_remoteport2remoteipcolor_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_remotePort2RemoteIPColor/${dotfile})
+	set_tests_properties(graphcompare_changed_remoteport2remoteipcolor_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_changed_remoteport2remoteiplabel_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_remotePort2RemoteIPLabel/${dotfile})
+	set_tests_properties(graphcompare_changed_remoteport2remoteiplabel_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_changed_remoteportlabel_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_remotePortLabel/${dotfile})
+	set_tests_properties(graphcompare_changed_remoteportlabel_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_changed_remoteportshape_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_remotePortShape/${dotfile})
+	set_tests_properties(graphcompare_changed_remoteportshape_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
+	
+	add_test(graphcompare_not_isomorph_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/not_isomorph/${dotfile})
+	set_tests_properties(graphcompare_not_isomorph_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_ISOMORPH}")
 endforeach()
