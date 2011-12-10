@@ -1,0 +1,41 @@
+graph G { /* Created by hpg2dot3() */
+rankdir=LR;
+node[shape=plaintext,fontsize=16];
+"localIP"--"protocol"--"localPort""localPort"--"remotePort"[label="B(pkts)"]"remotePort"--"remoteIP"[label="fl.(p./fl.)"]
+node[shape=ellipse];
+subgraph 0{rank=same;"localIP";k1_2574185491;}
+k1_2574185491[label="153.110.244.19"];
+k1_2574185491--k2_6;
+k1_2574185491--k2_1;
+subgraph 1 {rank=same;"protocol";k2_6;k2_1;}
+k2_6[label="TCP"];
+k2_1[label="ICMP"];
+k2_6--k3_268435536;
+k2_1--k3_536870912;
+k2_6--k3_268435477;
+k2_6--k3_268435476;
+subgraph 2 {rank=same;"localPort";k3_268435477;k3_536870912;k3_268435476;k3_268435536;}
+k3_268435477[label="21"];
+k3_536870912[label="0"];
+k3_268435476[label="20"];
+k3_268435536[label="80"];
+k3_536870912--k4_536870912[style=bold,dir=both][label="3000(2)"];
+k3_268435477--k4_68091918[style=bold,dir=both][label="48835(805)"];
+k3_268435536--k4_67305506[style=bold,dir=both][label="2050479(3121)"];
+k3_268435476--k4_68223046[style=bold,dir=both][label="766399(1697)"];
+subgraph 3 {rank=same;"remotePort";k4_68223046;k4_67305506;k4_536870912;k4_68091918;}
+k4_68223046[label="#con=70", shape=box, style=bold];
+k4_67305506[label="#con=34", shape=box, style=bold];
+k4_536870912[label="0"];
+k4_68091918[label="#con=14", shape=box, style=bold];
+k4_536870912--k5_3608512513[label="1(2)"];
+k4_68091918--k5_3253053344[label="14(57.5)"];
+k4_67305506--k5_3608512513[label="3(306.3)"];
+k4_68223046--k5_3253053344[label="70(24.2)"];
+k4_67305506--k5_196620[label="31(71)"];
+subgraph 4 {rank=same;"remoteIP";k5_3608512513;k5_3253053344;k5_196620;k5_3608512513;}
+k5_3608512513[label="215.21.136.1"];
+k5_3253053344[label="193.229.167.160"];
+k5_196620[label="#hosts=12", shape=box, style=bold];
+k5_3608512513[label="215.21.136.1"];
+}

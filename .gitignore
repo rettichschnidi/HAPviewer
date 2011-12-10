@@ -1,3 +1,5 @@
 .*
 *\$.hpg
+*.hpg
 !.gitignore
+CTestConfig.cmake

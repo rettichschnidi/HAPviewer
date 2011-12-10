@@ -1,0 +1,48 @@
+graph G { /* Created by hpg2dot3() */
+rankdir=LR;
+node[shape=plaintext,fontsize=16];
+"localIP"--"protocol"--"localPort""localPort"--"remotePort"[label="B(pkts)"]"remotePort"--"remoteIP"[label="fl.(p./fl.)"]
+node[shape=ellipse];
+subgraph 0{rank=same;"localIP";k1_3280011197;}
+k1_3280011197[label="195.128.255.189"];
+k1_3280011197--k2_17;
+k1_3280011197--k2_6;
+subgraph 1 {rank=same;"protocol";k2_6;k2_17;}
+k2_6[label="TCP"];
+k2_17[label="UDP"];
+k2_17--k3_53;
+k2_17--k3_12371;
+k2_6--k3_268438201;
+subgraph 2 {rank=same;"localPort";k3_12371;k3_53;k3_268438201;}
+k3_12371[label="12371"];
+k3_53[label="53"];
+k3_268438201[label="2745"];
+k3_268438201--k4_268437030[style=bold,dir=both][label="282(6)"];
+k3_53--k4_2147550209[dir=back, color=green][label="141(2)"];
+k3_53--k4_1094778883[dir=forward, color=red][label="814(7)"];
+k3_12371--k4_67305494[style=bold,dir=both][label="23828(73)"];
+k3_53--k4_1119879171[dir=back, color=red][label="429(6)"];
+k3_53--k4_67437116[style=bold,dir=both][label="448332(3938)"];
+subgraph 3 {rank=same;"remotePort";k4_1094778883;k4_67305494;k4_1119879171;k4_67437116;k4_268437030;k4_2147550209;}
+k4_1094778883[label="#con=3", shape=box, style=bold];
+k4_67305494[label="#con=22", shape=box, style=bold];
+k4_1119879171[label="#con=3", shape=box, style=bold];
+k4_67437116[label="#con=572", shape=box, style=bold];
+k4_268437030[label="1574"];
+k4_2147550209[label="1025"];
+k4_2147550209--k5_3282138561[color=green][label="1(2)"];
+k4_268437030--k5_3272116533[label="1(6)"];
+k4_67437116--k5_3282138561[label="1(2)"];
+k4_67305494--k5_196630[label="22(3.3)"];
+k4_67437116--k5_328212[label="571(6.8)"];
+k4_1094778883--k5_4259843[color=red][label="3(2.3)"];
+k4_1119879171--k5_12582915[color=red][label="3(2)"];
+subgraph 4 {rank=same;"remoteIP";k5_3282138561;k5_328212;k5_12582915;k5_196630;k5_3282138561;k5_4259843;k5_3272116533;}
+k5_3282138561[label="195.161.117.193"];
+k5_328212[label="#hosts=532", shape=box, style=bold];
+k5_12582915[label="#hosts=3", shape=box, style=bold];
+k5_196630[label="#hosts=22", shape=box, style=bold];
+k5_3282138561[label="195.161.117.193"];
+k5_4259843[label="#hosts=3", shape=box, style=bold];
+k5_3272116533[label="195.8.137.53"];
+}

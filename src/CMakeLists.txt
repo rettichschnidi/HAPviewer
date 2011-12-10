@@ -11,6 +11,7 @@ option(HAPVIEWER_MKTESTCFLOWS "Build the mk_test_cflows tool" ON)
 option(HAPVIEWER_LIBRARY_LIBTEST "Build the haplibtest" ON)
 option(HAPVIEWER_LIBRARY "Build the library version of HAPviewer" ON)
 option(HAPVIEWER_LIBRARY_SHARED "Build a shared of the static version of the library" ON)
+option(HAPVIEWER_GRAPHCOMPARE "Build the graphcompare tool" ON)
 
 option(HAPVIEWER_ENABLE_PCAP "Include support for pcap" ON)
 option(HAPVIEWER_ENABLE_IPFIX "Include support for ipfix" ON)
@@ -312,6 +313,18 @@ if(HAPVIEWER_GUI)
 	)
 
 	install (TARGETS HAPviewer DESTINATION bin)
+endif()
+
+if(HAPVIEWER_GRAPHCOMPARE)
+	find_package(Boost 1.40 REQUIRED COMPONENTS graph)
+	add_executable(graphcompare lib/graph.cpp tools/graphcompare.cpp)
+
+	include_directories(
+		${Boost_INCLUDE_DIRS}
+	)
+	target_link_libraries(graphcompare
+		${Boost_LIBRARIES}
+	)
 endif()
 
 #Allows to enable the integrated tests

@@ -99,7 +99,7 @@ typedef hash_map<CHashKey6_6, node_hm_value, HashFunction<CHashKey6_6> , HashFun
  *
  *	\exception char * Errormessage
  */
-ChpgData::ChpgData() {
+ChpgData::ChpgData(): nodeInfos(NULL) {
 #ifndef MAIN_TEST
 	cerr << "ERROR: wrong constructor (this cstor is for unit test only).\n";
 	throw "ERROR: wrong constructor (this cstor is for unit test only).";
@@ -108,7 +108,6 @@ ChpgData::ChpgData() {
 	hpgdata = NULL;
 	hpgdata_allocated = false;
 	show_packet_counts = true;
-	nodeInfos = NULL;
 }
 
 /**
@@ -119,7 +118,7 @@ ChpgData::ChpgData() {
  *
  *	\exception std::string Errormessage
  */
-ChpgData::ChpgData(const std::string & filename) {
+ChpgData::ChpgData(const std::string & filename): nodeInfos(NULL) {
 	int field_size = sizeof(hpg_field);
 	int record_size = field_size * 3;
 	fname = filename;
@@ -632,7 +631,7 @@ void ChpgData::hpg2dot3(int index, std::string & outfilename) {
 				// a) Output header text for "same rank" list
 				outfs << "subgraph " << counter_for_unique_subgraphs++ << " {rank=same;";
 				if (dbg5)
-					cout << "{rank=same;";
+					cout << "subgraph " << counter_for_unique_subgraphs++ << " {rank=same;";
 
 				// b) Output "pseudo node" as descriptive text for old partition
 				switch (last_rank) {
@@ -970,9 +969,9 @@ void ChpgData::hpg2dot3(int index, std::string & outfilename) {
 						// HPG data contains flowtype: choose edge type accordingly
 						switch (flowtype) {
 							case biflow:
-								outfs << "style=bold,dir=both,color=black";
+								outfs << "style=bold,dir=both";
 								if (dbg5)
-									cout << "style=bold,dir=both,color=black";
+									cout << "style=bold,dir=both";
 								break;
 							case inflow:
 								outfs << "dir=back, color=red";
@@ -1013,7 +1012,6 @@ void ChpgData::hpg2dot3(int index, std::string & outfilename) {
 							outfs << "[color=green]";
 							break;
 						default:
-							outfs << "[color=black]";
 							break;
 					}
 				}

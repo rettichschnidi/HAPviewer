@@ -1,0 +1,32 @@
+graph G { /* Created by hpg2dot3() */
+rankdir=LR;
+node[shape=plaintext,fontsize=16];
+"localIP"--"protocol"--"localPort""localPort"--"remotePort"[label="B(pkts)"]"remotePort"--"remoteIP"[label="fl.(p./fl.)"]
+node[shape=ellipse];
+subgraph 0{rank=same;"localIP";k1_2164076237;}
+k1_2164076237[label="128.253.46.205"];
+k1_2164076237--k2_6;
+subgraph 1 {rank=same;"protocol";k2_6;}
+k2_6[label="TCP"];
+k2_6--k3_268435591;
+k2_6--k3_268437411;
+k2_6--k3_278462571;
+subgraph 2 {rank=same;"localPort";k3_268437411;k3_268435591;k3_278462571;}
+k3_268437411[label="1955"];
+k3_268435591[label="135"];
+k3_278462571[label="#con=107", shape=box, style=bold];
+k3_268437411--k4_268501435[style=bold,dir=both][label="5208(21)"];
+k3_268435591--k4_1342181398[dir=back, color=red][label="96(2)"];
+k3_278462571--k4_268566608[style=bold,dir=both][label="1870584(3110)"];
+subgraph 3 {rank=same;"remotePort";k4_268501435;k4_268566608;k4_1342181398;}
+k4_268501435[label="443"];
+k4_268566608[label="80"];
+k4_1342181398[label="4118"];
+k4_1342181398--k5_3366129177[color=red][label="1(2)"];
+k4_268501435--k5_3632168912[label="1(21)"];
+k4_268566608--k5_10027048[label="107(29)"];
+subgraph 4 {rank=same;"remoteIP";k5_3366129177;k5_10027048;k5_3632168912;}
+k5_3366129177[label="200.163.14.25"];
+k5_10027048[label="#hosts=40", shape=box, style=bold];
+k5_3632168912[label="216.126.127.208"];
+}

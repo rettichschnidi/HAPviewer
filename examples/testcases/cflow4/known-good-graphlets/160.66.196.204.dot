@@ -1,0 +1,44 @@
+graph G { /* Created by hpg2dot3() */
+rankdir=LR;
+node[shape=plaintext,fontsize=16];
+"localIP"--"protocol"--"localPort""localPort"--"remotePort"[label="B(pkts)"]"remotePort"--"remoteIP"[label="fl.(p./fl.)"]
+node[shape=ellipse];
+subgraph 0{rank=same;"localIP";k1_2688730316;}
+k1_2688730316[label="160.66.196.204"];
+k1_2688730316--k2_6;
+subgraph 1 {rank=same;"protocol";k2_6;}
+k2_6[label="TCP"];
+k2_6--k3_268435536;
+k2_6--k3_268435566;
+k2_6--k3_268435481;
+k2_6--k3_269025288;
+subgraph 2 {rank=same;"localPort";k3_268435481;k3_268435566;k3_269025288;k3_268435536;}
+k3_268435481[label="25"];
+k3_268435566[label="110"];
+k3_269025288[label="#con=8", shape=box, style=bold];
+k3_268435536[label="80"];
+k3_268435536--k4_2415922132[dir=back, color=green][label="46(1)"];
+k3_269025288--k4_268501017[style=bold,dir=both][label="23893(184)"];
+k3_268435536--k4_67436979[style=bold,dir=both][label="864929(4280)"];
+k3_268435566--k4_67895344[style=bold,dir=both][label="510380(1455)"];
+k3_268435481--k4_68485137[style=bold,dir=both][label="910100(1327)"];
+subgraph 3 {rank=same;"remotePort";k4_67436979;k4_268501017;k4_68485137;k4_67895344;k4_2415922132;}
+k4_67436979[label="#con=435", shape=box, style=bold];
+k4_268501017[label="25"];
+k4_68485137[label="#con=17", shape=box, style=bold];
+k4_67895344[label="#con=48", shape=box, style=bold];
+k4_2415922132[label="3028"];
+k4_2415922132--k5_3607209333[color=green][label="1(1)"];
+k4_67436979--k5_3607209333[label="33(9)"];
+k4_268501017--k5_34144262[label="8(23)"];
+k4_67436979--k5_327694[label="402(9.9)"];
+k4_67895344--k5_786457[label="48(30.3)"];
+k4_68485137--k5_1376266[label="17(78)"];
+subgraph 4 {rank=same;"remoteIP";k5_786457;k5_3607209333;k5_327694;k5_34144262;k5_3607209333;k5_1376266;}
+k5_786457[label="#hosts=25", shape=box, style=bold];
+k5_3607209333[label="215.1.165.117"];
+k5_327694[label="#hosts=14", shape=box, style=bold];
+k5_34144262[label="#hosts=6", shape=box, style=bold];
+k5_3607209333[label="215.1.165.117"];
+k5_1376266[label="#hosts=10", shape=box, style=bold];
+}
