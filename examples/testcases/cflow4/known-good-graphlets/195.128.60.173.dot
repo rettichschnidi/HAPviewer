@@ -3,7 +3,7 @@ rankdir=LR;
 node[shape=plaintext,fontsize=16];
 "localIP"--"protocol"--"localPort""localPort"--"remotePort"[label="B(pkts)"]"remotePort"--"remoteIP"[label="fl.(p./fl.)"]
 node[shape=ellipse];
-subgraph 0{rank=same;"localIP";k1_3279961261;}
+subgraph 0 {rank=same;"localIP";k1_3279961261;}
 k1_3279961261[label="195.128.60.173"];
 k1_3279961261--k2_6;
 subgraph 1 {rank=same;"protocol";k2_6;}
@@ -14,7 +14,7 @@ k3_268435901[label="445"];
 k3_268435901--k4_1107492915[dir=back, color=red][label="5176(107)"];
 subgraph 3 {rank=same;"remotePort";k4_1107492915;}
 k4_1107492915[label="#con=51", shape=box, style=bold];
-k4_1107492915--k5_196659[color=red][label="51(2)"];
-subgraph 4 {rank=same;"remoteIP";k5_196659;}
-k5_196659[label="#hosts=51", shape=box, style=bold];
+k4_1107492915--k5_4294901811[color=red][label="51(2)"];
+subgraph 4 {rank=same;"remoteIP";k5_4294901811;}
+k5_4294901811[label="#hosts=51", shape=box, style=bold];
 }

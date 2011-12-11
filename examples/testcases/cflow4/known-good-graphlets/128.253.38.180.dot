@@ -3,7 +3,7 @@ rankdir=LR;
 node[shape=plaintext,fontsize=16];
 "localIP"--"protocol"--"localPort""localPort"--"remotePort"[label="B(pkts)"]"remotePort"--"remoteIP"[label="fl.(p./fl.)"]
 node[shape=ellipse];
-subgraph 0{rank=same;"localIP";k1_2164074164;}
+subgraph 0 {rank=same;"localIP";k1_2164074164;}
 k1_2164074164[label="128.253.38.180"];
 k1_2164074164--k2_6;
 subgraph 1 {rank=same;"protocol";k2_6;}

@@ -3,7 +3,7 @@ rankdir=LR;
 node[shape=plaintext,fontsize=16];
 "localIP"--"protocol"--"localPort""localPort"--"remotePort"[label="B(pkts)"]"remotePort"--"remoteIP"[label="fl.(p./fl.)"]
 node[shape=ellipse];
-subgraph 0{rank=same;"localIP";k1_3245472472;}
+subgraph 0 {rank=same;"localIP";k1_3245472472;}
 k1_3245472472[label="193.113.250.216"];
 k1_3245472472--k2_6;
 k1_3245472472--k2_1;
@@ -30,11 +30,11 @@ k4_68943943[label="#con=71", shape=box, style=bold];
 k4_67436578[label="#con=34", shape=box, style=bold];
 k4_1610612736--k5_1500401019[color=red][label="1(1)"];
 k4_268510911--k5_3245425410[label="2(15)"];
-k4_68943943--k5_1835011[label="71(26.8)"];
-k4_67436578--k5_327685[label="34(22.7)"];
-subgraph 4 {rank=same;"remoteIP";k5_3245425410;k5_1835011;k5_327685;k5_1500401019;}
+k4_67436578--k5_4294770693[label="34(22.7)"];
+k4_68943943--k5_4294901763[label="71(26.8)"];
+subgraph 4 {rank=same;"remoteIP";k5_4294770693;k5_3245425410;k5_4294901763;k5_1500401019;}
+k5_4294770693[label="#hosts=5", shape=box, style=bold];
 k5_3245425410[label="193.113.67.2"];
-k5_1835011[label="#hosts=3", shape=box, style=bold];
-k5_327685[label="#hosts=5", shape=box, style=bold];
+k5_4294901763[label="#hosts=3", shape=box, style=bold];
 k5_1500401019[label="89.110.77.123"];
 }

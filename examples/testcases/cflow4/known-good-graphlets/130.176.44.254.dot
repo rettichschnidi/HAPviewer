@@ -3,7 +3,7 @@ rankdir=LR;
 node[shape=plaintext,fontsize=16];
 "localIP"--"protocol"--"localPort""localPort"--"remotePort"[label="B(pkts)"]"remotePort"--"remoteIP"[label="fl.(p./fl.)"]
 node[shape=ellipse];
-subgraph 0{rank=same;"localIP";k1_2192583934;}
+subgraph 0 {rank=same;"localIP";k1_2192583934;}
 k1_2192583934[label="130.176.44.254"];
 k1_2192583934--k2_1;
 k1_2192583934--k2_17;
@@ -83,35 +83,35 @@ k4_268702261--k5_1041904834[label="2(5.5)"];
 k4_1342242896--k5_782001533[color=red][label="1(2)"];
 k4_77135903--k5_3599816118[label="1(5)"];
 k4_1117388805--k5_791843394[color=red][label="1(1)"];
-k4_268964406--k5_56033446[label="186(57.6)"];
-k4_1342640694--k5_56098906[color=red][label="91(1.9)"];
-k4_1092812819--k5_4294901763[color=red][label="3(1)"];
-k4_1117388805--k5_60424195[color=red][label="4(1.7)"];
-k4_1109786630--k5_4294901763[color=red][label="3(1)"];
-k4_1100480537--k5_60293145[color=red][label="25(2)"];
-k4_77135903--k5_60358686[label="30(23.6)"];
-k4_1109786630--k5_2490371[color=red][label="3(1.3)"];
-k4_1092812819--k5_2293776[color=red][label="16(1.9)"];
-k4_67436693--k5_327829[label="149(9)"];
-subgraph 4 {rank=same;"remoteIP";k5_791843394;k5_742903809;k5_60358686;k5_782001533;k5_327829;k5_60424195;k5_1041904834;k5_761288047;k5_4294901763;k5_3599816118;k5_2490371;k5_785618146;k5_60293145;k5_791843394;k5_3656086660;k5_2293776;k5_56098906;k5_762858662;k5_3599816118;k5_56033446;}
+k4_268964406--k5_4294901926[label="186(57.6)"];
+k4_1342640694--k5_4294705242[color=red][label="91(1.9)"];
+k4_1109786630--k5_4294311939[color=red][label="3(1.3)"];
+k4_1092812819--k5_4294377488[color=red][label="16(1.9)"];
+k4_1117388805--k5_4294508547[color=red][label="4(1.7)"];
+k4_67436693--k5_4294770837[label="149(9)"];
+k4_77135903--k5_4294639646[label="30(23.6)"];
+k4_1109786630--k5_4294443011[color=red][label="3(1)"];
+k4_1100480537--k5_4294574105[color=red][label="25(2)"];
+k4_1092812819--k5_4294443011[color=red][label="3(1)"];
+subgraph 4 {rank=same;"remoteIP";k5_4294770837;k5_791843394;k5_4294508547;k5_4294443011;k5_742903809;k5_782001533;k5_4294377488;k5_1041904834;k5_761288047;k5_3599816118;k5_785618146;k5_4294705242;k5_791843394;k5_4294901926;k5_3656086660;k5_4294311939;k5_762858662;k5_4294574105;k5_3599816118;k5_4294639646;}
+k5_4294770837[label="#hosts=149", shape=box, style=bold];
 k5_791843394[label="47.50.146.66"];
+k5_4294508547[label="#hosts=3", shape=box, style=bold];
+k5_4294443011[label="#hosts=3", shape=box, style=bold];
 k5_742903809[label="44.71.208.1"];
-k5_60358686[label="#hosts=30", shape=box, style=bold];
 k5_782001533[label="46.156.101.125"];
-k5_327829[label="#hosts=149", shape=box, style=bold];
-k5_60424195[label="#hosts=3", shape=box, style=bold];
+k5_4294377488[label="#hosts=16", shape=box, style=bold];
 k5_1041904834[label="62.26.52.194"];
 k5_761288047[label="45.96.85.111"];
-k5_4294901763[label="#hosts=3", shape=box, style=bold];
 k5_3599816118[label="214.144.213.182"];
-k5_2490371[label="#hosts=3", shape=box, style=bold];
 k5_785618146[label="46.211.148.226"];
-k5_60293145[label="#hosts=25", shape=box, style=bold];
+k5_4294705242[label="#hosts=90", shape=box, style=bold];
 k5_791843394[label="47.50.146.66"];
+k5_4294901926[label="#hosts=166", shape=box, style=bold];
 k5_3656086660[label="217.235.116.132"];
-k5_2293776[label="#hosts=16", shape=box, style=bold];
-k5_56098906[label="#hosts=90", shape=box, style=bold];
+k5_4294311939[label="#hosts=3", shape=box, style=bold];
 k5_762858662[label="45.120.76.166"];
+k5_4294574105[label="#hosts=25", shape=box, style=bold];
 k5_3599816118[label="214.144.213.182"];
-k5_56033446[label="#hosts=166", shape=box, style=bold];
+k5_4294639646[label="#hosts=30", shape=box, style=bold];
 }
