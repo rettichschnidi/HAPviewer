@@ -1,6 +1,6 @@
-All graphlets stored in the folder "known-good-graphlets" got generated with most recent HAPviewer as of the 17th February 2011 and are used as references.
+All graphlets stored in the folder "known-good-graphlets" got generated with most recent HAPviewer as of the 8th March 2011 and are used as references.
 
-Since the version of the 17th has/had some bugs...
+Since the version of the 8th has/had some bugs...
 
 * the file demo.gz in examples/cflow4/ got used as input
 * affected (wrong) graphlets got corrected manually
