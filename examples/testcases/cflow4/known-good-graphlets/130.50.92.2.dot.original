@@ -22,7 +22,7 @@ k3_6257[label="6257"];
 k3_268442155[label="6699"];
 k3_268436505[label="1049"];
 k3_268436505--k4_268440646[style=bold,dir=both][label="384(6)"];
-k3_275841029--k4_268507691[style=bold,dir=both][label="6281442(28204)"];
+k3_275841029--k4_268507691[style=bold,dir=both][label="6281442(720433)"];
 k3_275775499--k4_268566608[style=bold,dir=both][label="432916(606)"];
 k3_6257--k4_1107493309[dir=back, color=red][label="374140(1585)"];
 k3_268442155--k4_73990154[style=bold,dir=both][label="9022967(17872)"];
