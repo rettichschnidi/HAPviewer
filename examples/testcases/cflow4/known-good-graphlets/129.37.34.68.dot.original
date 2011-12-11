@@ -41,7 +41,7 @@ k3_137--k4_1073807497[dir=back, color=red][label="234(3)"];
 k3_268437905--k4_1342315233[dir=forward, color=red][label="288(6)"];
 k3_277807106--k4_268770017[style=bold,dir=both][label="3954(28)"];
 k3_284491778--k4_2416188248[dir=forward, color=green][label="288(6)"];
-k3_274202633--k4_268833334[style=bold,dir=both][label="6298(100)"];
+k3_274202633--k4_268833334[style=bold,dir=both][label="6298(1281)"];
 k3_4672--k4_1115291655[dir=back, color=red][label="389(7)"];
 k3_268440118--k4_67305844[style=bold,dir=both][label="5294010(14184)"];
 k3_268435591--k4_1121124354[dir=back, color=red][label="96(2)"];
