@@ -139,9 +139,7 @@ foreach(haplibtest_testflow ${haplibtest_testflows})
 	
 	add_test(haplibtest_testflow_${haplibtest_ip} ${EXECUTABLE_OUTPUT_PATH}/haplibtest "${haplibtest_testflow}" "${haplibtest_ip}" -o "${haplibtest_generated_graphlets}/${haplibtest_ip}.dot")
 	set_tests_properties(haplibtest_testflow_${haplibtest_ip} PROPERTIES FAIL_REGULAR_EXPRESSION "ERROR")
-	MESSAGE("calling for haplibtest_testflow_${haplibtest_ip}: ${EXECUTABLE_OUTPUT_PATH}/haplibtest ${haplibtest_testflow}" "${haplibtest_ip}" -o "${haplibtest_generated_graphlets}/${haplibtest_ip}.dot")
 	
 	add_test(haplibtest_testflow_compare_${haplibtest_ip} ${EXECUTABLE_OUTPUT_PATH}/graphcompare "${CMAKE_SOURCE_DIR}/examples/testcases/cflow4/known-good-graphlets/${haplibtest_ip}.dot" "${haplibtest_generated_graphlets}/${haplibtest_ip}.dot")
-	MESSAGE("calling for haplibtest_testflow_compare_${haplibtest_ip}: ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${CMAKE_SOURCE_DIR}/examples/testcases/cflow4/known-good-graphlets/${haplibtest_ip}.dot ${haplibtest_generated_graphlets}/${haplibtest_ip}.dot")
 	set_tests_properties(haplibtest_testflow_compare_${haplibtest_ip} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_EQUAL}")
 endforeach()
