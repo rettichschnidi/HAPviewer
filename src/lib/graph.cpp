@@ -192,7 +192,7 @@ std::ostream& FlowGraph::print(std::ostream &os) const {
  *
  * \exception std::exception
  */
-DotGraph::DotGraph(std::ifstream &dotInputStream) {
+DotGraph::DotGraph(std::istream &dotInputStream) {
 	prepareGraphProperties();
 	try {
 		importDotGraph(dotInputStream);
@@ -208,9 +208,9 @@ DotGraph::DotGraph(std::ifstream &dotInputStream) {
  *
  * \exception std::string Errormessage
  */
-void DotGraph::importDotGraph(std::ifstream &dotInputStream) {
+void DotGraph::importDotGraph(std::istream &dotInputStream) {
 	// this is needed, since some (all?) version of boost print out the whole graph to std::cerr in read_graphviz()
-	std::streambuf * cerr_save = std::cerr.rdbuf();
+	std::streambuf *cerr_save = std::cerr.rdbuf();
 	std::stringstream sinkStreambuf;
 	std::cerr.rdbuf(sinkStreambuf.rdbuf());
 	try {
@@ -341,49 +341,49 @@ void DotGraph::prepareGraphProperties() {
  */
 bool DotGraph::equal(DotGraph &other, FlowContainer &thisFlows, FlowContainer &otherFlows) {
 	FlowGraph temporaryFlowGraph;
-	GraphVertexIterator this_lIP = findLocalIP(*this);
-	GraphVertexIterator other_lIP = findLocalIP(other);
+	GraphVertexIterator thisLocallIP = findLocalIP(*this);
+	GraphVertexIterator otherLocalIP = findLocalIP(other);
 
-	this->buildFlowset(*this_lIP, temporaryFlowGraph, 1, thisFlows);
-	other.buildFlowset(*other_lIP, temporaryFlowGraph, 1, otherFlows);
+	this->buildFlowset(*thisLocallIP, temporaryFlowGraph, 1, thisFlows);
+	other.buildFlowset(*otherLocalIP, temporaryFlowGraph, 1, otherFlows);
 
-	for (FlowContainer::iterator thisit = thisFlows.begin(); thisit != thisFlows.end();) { // TODO: would std::set_difference do the job as well?
-		FlowContainer::iterator otherit = otherFlows.find(*thisit);
-		if (otherit != otherFlows.end()) {
-			otherFlows.erase(otherit);
-			thisFlows.erase(thisit++);
+	for (FlowContainer::iterator thisIterator = thisFlows.begin(); thisIterator != thisFlows.end();) { // TODO: would std::set_difference do the job as well?
+		FlowContainer::iterator otherIterator = otherFlows.find(*thisIterator);
+		if (otherIterator != otherFlows.end()) {
+			otherFlows.erase(otherIterator);
+			thisFlows.erase(thisIterator++);
 		} else {
-			thisit++;
+			thisIterator++;
 		}
 	}
-
 	return thisFlows.empty() && otherFlows.empty();
 }
 
-bool DotGraph::equalVerbose(DotGraph &other) {
-	if (!isomorphism(other)) {
-		cout << "Graphs are not isomorph!" << endl;
-		return false;
-	}
-
-	FlowContainer thisUnmatched, otherUnmatched;
-	bool isEqual = equal(other, thisUnmatched, otherUnmatched);
+bool DotGraph::diffGraphVerbose(DotGraph &other) {
+	FlowContainer thisUnmatchedFlows, otherUnmatchedFlows;
+	bool isEqual = equal(other, thisUnmatchedFlows, otherUnmatchedFlows);
 	if(isEqual) {
+		cout << "Graphs are equal." << endl;
 		return true;
 	} else {
 		cout << "Graphs are not equal." << endl;
 		cout << "Unmatched flows on first graph: " << endl;
-		for(FlowContainer::iterator it = thisUnmatched.begin(); it != thisUnmatched.end(); it++) {
+		for(FlowContainer::iterator it = thisUnmatchedFlows.begin(); it != thisUnmatchedFlows.end(); it++) {
 			it->print(cout);
 			cout << endl;
 		}
 		cout << "Unmatched flows on second graph: " << endl;
-		for(FlowContainer::iterator it = otherUnmatched.begin(); it != otherUnmatched.end(); it++) {
+		for(FlowContainer::iterator it = otherUnmatchedFlows.begin(); it != otherUnmatchedFlows.end(); it++) {
 			it->print(cout);
 			cout << endl;
 		}
 	}
 	return false;
+}
+
+bool DotGraph::equal(DotGraph &other) {
+	FlowContainer thisUnmatchedFlows, otherUnmatchedFlows;
+	return equal(other, thisUnmatchedFlows, otherUnmatchedFlows);
 }
 
 void DotGraph::buildFlowset(Vertex v, FlowGraph &prototype, unsigned int k_level, FlowContainer &results) {

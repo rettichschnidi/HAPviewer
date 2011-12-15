@@ -54,7 +54,7 @@ struct FlowGraph {
 		std::string remoteIPShape;
 };
 
-class DotGraph {
+class DotGraph: boost::noncopyable {
 	private:
 		// This is needed for the Boost/Graphviz stuff
 		struct graph_name_t {
@@ -241,16 +241,17 @@ class DotGraph {
 		typedef std::multiset<FlowGraph> FlowContainer;
 
 	public:
-		DotGraph(std::ifstream & dotInputStream);
-		bool equalVerbose(DotGraph & other);
-		bool isomorphism(DotGraph & other);
+		DotGraph(std::istream &dotInputStream);
+		bool equal(DotGraph &other, FlowContainer &thisUnmatchedFlows, FlowContainer &otherUnmatchedFlows);
+		bool equal(DotGraph &other);
+		bool diffGraphVerbose(DotGraph &other);
+		bool isomorphism(DotGraph &other);
 		void buildFlowset(Vertex v, FlowGraph &prototype, unsigned int space, FlowContainer &results);
 
 	private:
-		bool equal(DotGraph & other, FlowContainer &thisUnmatched, FlowContainer &otherUnmatched);
 		void prepareGraphProperties();
 		static GraphVertexIterator findLocalIP(DotGraph &graph);
-		void importDotGraph(std::ifstream & dotInputStream);
+		void importDotGraph(std::istream & dotInputStream);
 
 };
 
