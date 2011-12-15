@@ -38,7 +38,7 @@ endforeach()
 #test graphcompare with all available examples
 set(GRAPHS_NOT_EQUAL "Graphs are not equal.")
 set(GRAPHS_EQUAL "Graphs are equal.")
-set(GRAPHS_NOT_ISOMORPH "Graphs are not isomorph!")
+set(GRAPHS_NOT_ISOMORPH "Graphs are not isomorph.")
 file(GLOB graphcompare_testgraphs ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/*.dot)
 
 foreach(testgraph ${graphcompare_testgraphs})
@@ -126,4 +126,22 @@ foreach(testgraph ${graphcompare_testgraphs})
 	    add_test(graphcompare_changed_remoteportshape_${dotfile} ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${testgraph} ${CMAKE_SOURCE_DIR}/examples/testcases/graphcompare/changed_remotePortShape/${dotfile})
 	    set_tests_properties(graphcompare_changed_remoteportshape_${dotfile} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_NOT_EQUAL}")
     endif()
+endforeach()
+
+#test graphcompare with all available examples
+set(haplibtest_generated_graphlets ${CMAKE_BINARY_DIR}/haplibtest_generated_graphlets)
+file(REMOVE_RECURSE ${haplibtest_generated_graphlets})
+file(MAKE_DIRECTORY ${haplibtest_generated_graphlets})
+file(GLOB haplibtest_testflows ${CMAKE_SOURCE_DIR}/examples/testcases/cflow4/*.gz)
+
+foreach(haplibtest_testflow ${haplibtest_testflows})
+	string(REGEX REPLACE "(\\/.*\\/)([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)\\.gz" "\\2" haplibtest_ip "${haplibtest_testflow}")
+	
+	add_test(haplibtest_testflow_${haplibtest_ip} ${EXECUTABLE_OUTPUT_PATH}/haplibtest "${haplibtest_testflow}" "${haplibtest_ip}" -o "${haplibtest_generated_graphlets}/${haplibtest_ip}.dot")
+	set_tests_properties(haplibtest_testflow_${haplibtest_ip} PROPERTIES FAIL_REGULAR_EXPRESSION "ERROR")
+	MESSAGE("calling for haplibtest_testflow_${haplibtest_ip}: ${EXECUTABLE_OUTPUT_PATH}/haplibtest ${haplibtest_testflow}" "${haplibtest_ip}" -o "${haplibtest_generated_graphlets}/${haplibtest_ip}.dot")
+	
+	add_test(haplibtest_testflow_compare_${haplibtest_ip} ${EXECUTABLE_OUTPUT_PATH}/graphcompare "${CMAKE_SOURCE_DIR}/examples/testcases/cflow4/known-good-graphlets/${haplibtest_ip}.dot" "${haplibtest_generated_graphlets}/${haplibtest_ip}.dot")
+	MESSAGE("calling for haplibtest_testflow_compare_${haplibtest_ip}: ${EXECUTABLE_OUTPUT_PATH}/graphcompare ${CMAKE_SOURCE_DIR}/examples/testcases/cflow4/known-good-graphlets/${haplibtest_ip}.dot ${haplibtest_generated_graphlets}/${haplibtest_ip}.dot")
+	set_tests_properties(haplibtest_testflow_compare_${haplibtest_ip} PROPERTIES PASS_REGULAR_EXPRESSION "${GRAPHS_EQUAL}")
 endforeach()
