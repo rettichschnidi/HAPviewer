@@ -260,7 +260,7 @@ bool IPv6_addr::isIPv6() const {
 
 /**
  *
- * @return
+ * \return
  */
 std::string IPv6_addr::toNumericString() const {
 	std::stringstream ss;

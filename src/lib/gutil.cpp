@@ -659,11 +659,11 @@ namespace util {
 	/**
 	 * Render a DOT file to something that it supported by graphviz
 	 *
-	 * @param inputDOT Filename of inputfile
-	 * @param outputFile Filename of outputfile
-	 * @param format selected output format (png, jpg, svg, etc.)
+	 * \param inputDOT Filename of inputfile
+	 * \param outputFile Filename of outputfile
+	 * \param format selected output format (png, jpg, svg, etc.)
 	 *
-	 * @exception std::string Errormessage
+	 * \exception std::string Errormessage
 	 */
 	void renderDot(std::string & inputDOT, std::string & outputFile, std::string & format) {
 		GVC_t *gvc;

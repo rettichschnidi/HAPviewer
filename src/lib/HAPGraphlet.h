@@ -202,9 +202,9 @@ class HAPGraphlet: boost::noncopyable {
 
 				/**
 				 * Tests, if two points collides
-				 * @param point Point
-				 * @param tolerance Tolerance
-				 * @return bool True if collides
+				 * \param point Point
+				 * \param tolerance Tolerance
+				 * \return bool True if collides
 				 */
 				virtual bool collides(pos<int> point, double tolerance) const {
 					return false;
@@ -339,7 +339,7 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Provides a const iterator to traverse all edgesVector elements
-		 * @return A pair of the begin() and end() iterator of edgesVector
+		 * \return A pair of the begin() and end() iterator of edgesVector
 		 */
 		std::pair<const_edges_iterator, const_edges_iterator> getEdgesIterators() {
 			return std::make_pair(edgesVector.begin(), edgesVector.end());
@@ -347,7 +347,7 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Provides a const iterator to traverse all verticesVector elements
-		 * @return A pair of the begin() and end() iterator of verticesVector
+		 * \return A pair of the begin() and end() iterator of verticesVector
 		 */
 		std::pair<const_vertices_iterator, const_vertices_iterator> getVerticesIterators() {
 			return std::make_pair(verticesVector.begin(), verticesVector.end());
@@ -355,7 +355,7 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Provides a const iterator to traverse all arrows elements
-		 * @return A pair of the begin() and end() iterator of edgeArrowsMap
+		 * \return A pair of the begin() and end() iterator of edgeArrowsMap
 		 */
 		std::pair<const_arrows_iterator, const_arrows_iterator> getEdgeArrowsIterators() {
 			return std::make_pair(edgeArrowsMap.begin(), edgeArrowsMap.end());
@@ -363,7 +363,7 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Provides a const iterator to traverse all edgeTexts elements
-		 * @return A pair of the begin() and end() iterator of edgeTextMap
+		 * \return A pair of the begin() and end() iterator of edgeTextMap
 		 */
 		std::pair<const_texts_iterator, const_texts_iterator> getEdgeTextsIterators() {
 			return std::make_pair(edgeTextMap.begin(), edgeTextMap.end());
@@ -371,7 +371,7 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Provides a const iterator to traverse all vertexTexts elements
-		 * @return A pair of the begin() and end() iterator of vertexTextMap
+		 * \return A pair of the begin() and end() iterator of vertexTextMap
 		 */
 		std::pair<const_texts_iterator, const_texts_iterator> getVertexTextsIterators() {
 			return std::make_pair(vertexTextMap.begin(), vertexTextMap.end());
@@ -379,7 +379,7 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Get graph height
-		 * @return int Height
+		 * \return int Height
 		 */
 		int getGraphHeight() {
 			return graph_graphHeight;
@@ -387,7 +387,7 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Get graph width
-		 * @return int Width
+		 * \return int Width
 		 */
 		int getGraphWidth() {
 			return graph_graphWidth;
@@ -395,7 +395,7 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Get color of graph
-		 * @return color_t Color
+		 * \return color_t Color
 		 */
 		color_t getGraphColor() {
 			return graph_color;
@@ -406,7 +406,7 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Return the type of the latest result of lookupElementAtPosition()
-		 * @return resultType Type of latest result
+		 * \return resultType Type of latest result
 		 */
 		resultType getLastResultType() {
 			return lastResultType;
@@ -414,7 +414,7 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Return the last hit remote IP
-		 * @return IPv6_addr remote IP
+		 * \return IPv6_addr remote IP
 		 */
 		IPv6_addr getLastIP() {
 			return lastIP;
@@ -422,7 +422,7 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Return the rolenumber of the last hit vertex
-		 * @return
+		 * \return
 		 */
 		int getLastRolnum() {
 			return lastRolnum;
@@ -430,7 +430,7 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Return an iterator to the last hit edge
-		 * @return
+		 * \return
 		 */
 		edgesVector_t::const_iterator getLastEdge() {
 			return lastEdge;
@@ -440,7 +440,7 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Add a new highlighted edge
-		 * @param e Edge to highlight
+		 * \param e Edge to highlight
 		 */
 		void addHighlightedEdge(const_edges_iterator e) {
 			highlighted_edges.insert(e);
@@ -448,8 +448,8 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * Look up if edge is already highlighted
-		 * @param e Edge in question
-		 * @return bool True if this edge is already highlighted
+		 * \param e Edge in question
+		 * \return bool True if this edge is already highlighted
 		 */
 		bool isHighlightedEdge(const_edges_iterator e) {
 			return highlighted_edges.find(e) != highlighted_edges.end();
@@ -457,14 +457,14 @@ class HAPGraphlet: boost::noncopyable {
 
 		/**
 		 * "un"-highlight an edge
-		 * @param e Edge to remove from the highlighted ones
+		 * \param e Edge to remove from the highlighted ones
 		 */
 		void delHighlightedEdge(const_edges_iterator e) {
 			highlighted_edges.erase(e);
 		}
 		/**
 		 * Get all highlighted edges at once
-		 * @return std::set<const_edges_iterator> Const reference to all the highlighted edges
+		 * \return std::set<const_edges_iterator> Const reference to all the highlighted edges
 		 */
 		const std::set<const_edges_iterator> & getHighlightedEdges() {
 			return highlighted_edges;

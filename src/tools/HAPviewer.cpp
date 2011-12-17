@@ -68,7 +68,7 @@ void print_stacktrace() {
 
 /**
  * Handles the signals. Prints out a stacktrace in any case and quits if the signal was anything else than SIGUSR1
- * @param signal
+ * \param signal
  */
 void handle_signal(int signal) {
 	if(signal != SIGUSR1) {
