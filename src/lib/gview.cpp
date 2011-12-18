@@ -406,7 +406,7 @@ void CPreferences::on_button_pref_ok() {
 /**
  * Constructor: Default constructor
  *
- * @param argv Not used.
+ * \param argv Not used.
  */
 CView::CView(char *argv[]) :
 	m_Button_Refresh1("Refresh"), m_Button_Refresh2("Refresh"), m_Button_Flowlist1("Flowlist"), m_Button_Flowlist2("Flowlist") {
@@ -1133,7 +1133,7 @@ void CView::handle_goto_IP(IPv6_addr IP) {
 /**
  * Add a new rolenumber to the set of the not-to-be summarized nodes
  *
- * @param rolnum Rolenumber not to summarize
+ * \param rolnum Rolenumber not to summarize
  */
 void CView::handle_new_rolnum(uint32_t rolnum) {
 	if (m_refHostTreeModel) {
@@ -1152,8 +1152,8 @@ void CView::handle_new_rolnum(uint32_t rolnum) {
 /**
  * Imports from a file to a CFlowList, using the submitted IP and netmask
  *
- * @param IP IP
- * @param netmask Netmask
+ * \param IP IP
+ * \param netmask Netmask
  */
 void CView::handle_get_network(IPv6_addr IP, IPv6_addr netmask) {
 	if (dbg2)
@@ -1237,7 +1237,7 @@ void CView::handle_list_cleared() {
 /**
  * Displays an errortext to the user and ends HAPviewer
  *
- * @param errtext Error message
+ * \param errtext Error message
  */
 void CView::handle_error(std::string errtext) {
 	Gtk::MessageDialog dialog(*this, "ERROR:");
@@ -1250,7 +1250,7 @@ void CView::handle_error(std::string errtext) {
 /**
  * Displays an errortext to the user
  *
- * @param errtext  * Displays an errortext to the user and ends HAPviewer
+ * \param errtext  * Displays an errortext to the user and ends HAPviewer
  */
 void CView::handle_failure(std::string errtext) {
 	Gtk::MessageDialog dialog(*this, "INFO:");
@@ -1262,7 +1262,7 @@ void CView::handle_failure(std::string errtext) {
 /**
  * Update preferences with the given ones
  *
- * @param newprefs Reference to the preferences which should get copied
+ * \param newprefs Reference to the preferences which should get copied
  */
 void CView::handle_preferences(const prefs_t & newprefs) {
 	// Copy only the fields covered by preferences dialog
@@ -1803,7 +1803,7 @@ bool CView::handle_binary_import(std::string in_filename, string & out_filename)
 /**
  * Shows the progressbar
  *
- * @param fraction Progress (0.0 to 1.0)
+ * \param fraction Progress (0.0 to 1.0)
  */
 void CView::show_progressbar(double fraction) {
 	m_ProgressBar.set_fraction(fraction);
@@ -1823,7 +1823,7 @@ void CView::show_progressbar(double fraction) {
 /**
  * Handles the progressbar update
  *
- * @param fraction Progress (0.0 to 1.0)
+ * \param fraction Progress (0.0 to 1.0)
  */
 void CView::update_progressbar(double fraction) {
 	if (dbg)

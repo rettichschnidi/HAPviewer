@@ -30,7 +30,7 @@ using namespace boost;
 /**
  * Constructor
  *
- * @param dotFilename DOT file to read in memory
+ * \param dotFilename DOT file to read in memory
  *
  * \exception std::string Errormessage
  */
@@ -76,10 +76,10 @@ HAPGraphlet::HAPGraphlet(std::string & dotFilename) :
 /**
  * Transfer the DOT file to a XDOT file (does the layout)
  *
- * @param dotFilename Input DOT file
- * @param xdotFilename Resulting XDOT file
+ * \param dotFilename Input DOT file
+ * \param xdotFilename Resulting XDOT file
  *
- * @exception std::string Errormessage
+ * \exception std::string Errormessage
  */
 void HAPGraphlet::prepareXDot(const std::string & dotFilename, const std::string & xdotFilename) {
 	GVC_t *gvc;
@@ -462,7 +462,7 @@ void HAPGraphlet::prepareEdges() {
 
 /**
  * Read and parse all graph attributes we need
- * @exception string Error message
+ * \exception string Error message
  */
 void HAPGraphlet::prepareGraph() {
 	boost::ref_property_map<boost_graph_t*, std::string> graph_bb(boost::get_property(graph, graph_bb_t()));
@@ -482,8 +482,8 @@ void HAPGraphlet::prepareGraph() {
 
 /**
  * Extract a number of a stringstream
- * @param ss Stringstream to read from
- * @return int Number
+ * \param ss Stringstream to read from
+ * \return int Number
  */
 int HAPGraphlet::parse_NumberOfFollowingBytes(std::stringstream & ss) {
 	int numberOfBytes;
@@ -493,7 +493,7 @@ int HAPGraphlet::parse_NumberOfFollowingBytes(std::stringstream & ss) {
 
 /**
  * Remove up to two chars from the supplied stringstream
- * @param ss Stringstream to consume up to 2 chars
+ * \param ss Stringstream to consume up to 2 chars
  */
 void HAPGraphlet::parse_consumeTrailingGarbage(std::stringstream & ss) {
 	ss.ignore(2, '-'); // one space, followed by a dash
@@ -501,9 +501,9 @@ void HAPGraphlet::parse_consumeTrailingGarbage(std::stringstream & ss) {
 
 /**
  * Return a text of variable length
- * @param ss Stringstream to read from
- * @param length Lenght of text
- * @return std::string Text as string object
+ * \param ss Stringstream to read from
+ * \param length Lenght of text
+ * \return std::string Text as string object
  */
 std::string HAPGraphlet::parse_VarText(std::stringstream & ss, int length) {
 	char buf[length + 1];
@@ -514,10 +514,10 @@ std::string HAPGraphlet::parse_VarText(std::stringstream & ss, int length) {
 
 /**
  * Extract color
- * @param ss Stringstream to read from
- * @return HAPGraphlet::color_t Color
+ * \param ss Stringstream to read from
+ * \return HAPGraphlet::color_t Color
  *
- * @exception std::string Errormessage
+ * \exception std::string Errormessage
  */
 HAPGraphlet::color_t HAPGraphlet::parse_PenColor(std::stringstream & ss) {
 	int bytes = parse_NumberOfFollowingBytes(ss);
@@ -538,8 +538,8 @@ HAPGraphlet::color_t HAPGraphlet::parse_PenColor(std::stringstream & ss) {
 
 /**
  * Extract the x/y value of a vertex point
- * @param vertex Element to modify
- * @param ss Stringstream to read from
+ * \param vertex Element to modify
+ * \param ss Stringstream to read from
  */
 void HAPGraphlet::parse_VertexAttributes(element_vertex & vertex, std::stringstream & ss) {
 	// FIXME: ugly but easy
@@ -552,8 +552,8 @@ void HAPGraphlet::parse_VertexAttributes(element_vertex & vertex, std::stringstr
 
 /**
  * Extract the x/y value of a text, its position, width and the text itself
- * @param text Element to modifiy
- * @param ss Stringstream to read from
+ * \param text Element to modifiy
+ * \param ss Stringstream to read from
  */
 void HAPGraphlet::parse_TextAttributes(element_text & text, std::stringstream & ss) {
 	int tmp;
@@ -583,8 +583,8 @@ void HAPGraphlet::parse_TextAttributes(element_text & text, std::stringstream & 
 
 /**
  * Extract information about the font. Currently just the fontsize gets used.
- * @param text Element to update.
- * @param ss Stringstream to read from
+ * \param text Element to update.
+ * \param ss Stringstream to read from
  */
 void HAPGraphlet::parse_Font(element_text & text, std::stringstream & ss) {
 	ss >> text.fontsize;
@@ -595,8 +595,8 @@ void HAPGraphlet::parse_Font(element_text & text, std::stringstream & ss) {
 
 /**
  * Extract the points of a bezier curve.
- * @param ss Stringstream to read from
- * @return std::vector<HAPGraphlet::pos<int> Vector of extraced points
+ * \param ss Stringstream to read from
+ * \return std::vector<HAPGraphlet::pos<int> Vector of extraced points
  */
 std::vector<HAPGraphlet::pos<int> > HAPGraphlet::parse_BPoints(std::stringstream & ss) {
 	vector<pos<int> > vec;
@@ -612,8 +612,8 @@ std::vector<HAPGraphlet::pos<int> > HAPGraphlet::parse_BPoints(std::stringstream
 }
 /**
  * Extract information in the style tag
- * @param elem Element to update
- * @param ss Stringstream to read from
+ * \param elem Element to update
+ * \param ss Stringstream to read from
  */
 void HAPGraphlet::parse_Style(element_withline & elem, std::stringstream & ss) {
 	int varLen = 0;
@@ -637,9 +637,9 @@ void HAPGraphlet::parse_Style(element_withline & elem, std::stringstream & ss) {
 
 /**
  * Looks up the element at a specific x/y point. If somethings gets hit, lastResultType gets updated.
- * @param x X value
- * @param y Y value
- * @return bool True if something got hit
+ * \param x X value
+ * \param y Y value
+ * \return bool True if something got hit
  */
 bool HAPGraphlet::lookupElementAtPosition(int x, int y) {
 	for (const_vertices_iterator vit = verticesVector.begin(); vit != verticesVector.end(); vit++) {
@@ -674,7 +674,7 @@ bool HAPGraphlet::lookupElementAtPosition(int x, int y) {
 
 /**
  * Returns the color red
- * @return color_t Red color
+ * \return color_t Red color
  */
 HAPGraphlet::color_t HAPGraphlet::color_t::getRed() {
 	color_t color;
@@ -686,7 +686,7 @@ HAPGraphlet::color_t HAPGraphlet::color_t::getRed() {
 
 /**
  * Returns the color green
- * @return color_t Green color
+ * \return color_t Green color
  */
 HAPGraphlet::color_t HAPGraphlet::color_t::getGreen() {
 	color_t color;
@@ -698,7 +698,7 @@ HAPGraphlet::color_t HAPGraphlet::color_t::getGreen() {
 
 /**
  * Returns the color blue
- * @return color_t Blue color
+ * \return color_t Blue color
  */
 HAPGraphlet::color_t HAPGraphlet::color_t::getBlue() {
 	color_t color;
@@ -710,7 +710,7 @@ HAPGraphlet::color_t HAPGraphlet::color_t::getBlue() {
 
 /**
  * Returns the color white
- * @return color_t White color
+ * \return color_t White color
  */
 HAPGraphlet::color_t HAPGraphlet::color_t::getWhite() {
 	color_t color;
@@ -720,7 +720,7 @@ HAPGraphlet::color_t HAPGraphlet::color_t::getWhite() {
 
 /**
  * Returns the color black
- * @return color_t Black color
+ * \return color_t Black color
  */
 HAPGraphlet::color_t HAPGraphlet::color_t::getBlack() {
 	color_t color;
@@ -730,9 +730,9 @@ HAPGraphlet::color_t HAPGraphlet::color_t::getBlack() {
 
 /**
  * Decides if a x/y hits this vertex
- * @param point X/Y point
- * @param tolerance How far away is close enough
- * @return bool True if this element got hit/is close enough
+ * \param point X/Y point
+ * \param tolerance How far away is close enough
+ * \return bool True if this element got hit/is close enough
  */
 bool HAPGraphlet::element_vertex::collides(pos<int> point, double tolerance) const {
 
@@ -749,9 +749,9 @@ bool HAPGraphlet::element_vertex::collides(pos<int> point, double tolerance) con
 
 /**
  * Decides if a x/y hits this edge
- * @param point X/Y point
- * @param tolerance How far away is close enough
- * @return bool True if this element got hit/is close enough
+ * \param point X/Y point
+ * \param tolerance How far away is close enough
+ * \return bool True if this element got hit/is close enough
  */
 bool HAPGraphlet::element_edge::collides(pos<int> point, double tolerance) const {
 	double delta = tolerance / 100.0;
@@ -776,9 +776,9 @@ bool HAPGraphlet::element_edge::collides(pos<int> point, double tolerance) const
  * Get the x/y point at a specific part of the spline.
  * This implementation works "good enough", but it would not harm anyone if it would be
  * changed to a non-recursive one
- * @param points Points for this curve
- * @param t Defines which point between the first and the last element (t = 0..1) in points we want to calculate
- * @return HAPGraphlet::pos<int> Requested Point
+ * \param points Points for this curve
+ * \param t Defines which point between the first and the last element (t = 0..1) in points we want to calculate
+ * \return HAPGraphlet::pos<int> Requested Point
  */
 HAPGraphlet::pos<int> HAPGraphlet::element_edge::getPointForT(const std::vector<pos<int> > & points, double t) const {
 	assert(!points.empty());
@@ -796,9 +796,9 @@ HAPGraphlet::pos<int> HAPGraphlet::element_edge::getPointForT(const std::vector<
 
 /**
  * Tests, if two points are close enought
- * @param point Point
- * @param tolerance Tolerance
- * @return bool True if close enough, otherwise false
+ * \param point Point
+ * \param tolerance Tolerance
+ * \return bool True if close enough, otherwise false
  */
 template<typename T> bool HAPGraphlet::pos<T>::isCloseEnough(pos<T> point, T tolerance) {
 	if (x >= point.x - tolerance && x <= point.x + tolerance && y >= point.y - tolerance && y <= point.y + tolerance)

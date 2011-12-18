@@ -288,10 +288,10 @@ void GFilter_cflow::write_file(const std::string & out_filename, const Subflowli
 /**
  * Writes a single flow to filtering_ostream
  *
- * @param out_filestream Filename to write
- * @param cf flow to write
+ * \param out_filestream Filename to write
+ * \param cf flow to write
  *
- * @exception std::string Errortext
+ * \exception std::string Errortext
  */
 void GFilter_cflow::write_flow(boost::iostreams::filtering_ostream & out_filestream, const cflow_t & cf) const {
 	throw "This filter does not support writing";
@@ -300,10 +300,10 @@ void GFilter_cflow::write_flow(boost::iostreams::filtering_ostream & out_filestr
 /**
  *	Creates a stream which compresses to a gz-file
  *
- *	@param in_filestream The resulting, uncompressed stream
- *	@param in_filename Filename of the compressed file
+ *	\param in_filestream The resulting, uncompressed stream
+ *	\param in_filename Filename of the compressed file
  *
- *	@exception std::string Errortext
+ *	\exception std::string Errortext
  */
 void GFilter_cflow::openGzipStream(boost::iostreams::filtering_ostream & out_filestream, boost::iostreams::file_sink & out_filesink,
       const std::string & in_filename) const {

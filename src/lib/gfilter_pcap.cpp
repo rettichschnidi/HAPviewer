@@ -51,7 +51,7 @@ GFilter_pcap::GFilter_pcap(std::string formatName, std::string humanReadablePatt
  *	\param netmask Network mask for local network address
  *	\param append Future flag to allow the import of more than one file (not yet used)
  *
- *	@exception std::string Errortext
+ *	\exception std::string Errortext
  */
 void GFilter_pcap::read_file(std::string in_filename, CFlowList & flowlist, const IPv6_addr & local_net, const IPv6_addr & netmask, bool append) const {
 	// Allocate temp_flowlist

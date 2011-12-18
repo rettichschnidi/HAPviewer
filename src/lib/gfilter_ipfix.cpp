@@ -38,7 +38,7 @@ GFilter_ipfix::GFilter_ipfix(std::string formatName, std::string humanReadablePa
  *	\param netmask Network mask for local network address
  *	\param append Future flag to allow the import of more than one file (not yet used)
  *
- *	@exception std::string Errortext
+ *	\exception std::string Errortext
  */
 void GFilter_ipfix::read_file(std::string in_filename, CFlowList & flowlist, const IPv6_addr & local_net, const IPv6_addr & netmask, bool append) const {
 	bool debug5 = false; //FIXME: remove this kind of errorhandling
