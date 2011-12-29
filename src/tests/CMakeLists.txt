@@ -131,7 +131,8 @@ endforeach()
 #test hablibtest/hapviz with all available examples
 set(haplibtest_generated_graphlets ${CMAKE_BINARY_DIR}/haplibtest_generated_graphlets)
 #delete all old graphs and make sure the output directory exists afterwards
-file(REMOVE_RECURSE ${haplibtest_generated_graphlets})file(MAKE_DIRECTORY ${haplibtest_generated_graphlets})
+file(REMOVE_RECURSE ${haplibtest_generated_graphlets})
+file(MAKE_DIRECTORY ${haplibtest_generated_graphlets})
 file(GLOB haplibtest_testflows ${CMAKE_SOURCE_DIR}/examples/testcases/cflow4/*.gz)
 
 foreach(haplibtest_testflow ${haplibtest_testflows})
