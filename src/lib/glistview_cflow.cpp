@@ -1113,7 +1113,7 @@ void ChostListView::show_graphlet_from_list(CImport & cimport, int graphlet_nr, 
 		if (dbg) {
 			cout << "HPG data transformed into DOT format and saved in " << filename << ".\n\n";
 		}
-	} catch (string & errtext) {
+	} catch (...) {
 		string errtext = "No flows to display for this host.\n";
 		cerr << errtext;
 		signal_failure(errtext);
