@@ -33,9 +33,39 @@ else (GVC_LIBRARIES AND GVC_INCLUDE_DIRS)
       graphviz
   )
 
-  find_library(GVC_LIBRARY
+  find_library(GVC_GVC_LIBRARY
     NAMES
       gvc
+    PATHS
+      /usr/lib
+      /usr/local/lib
+      /opt/local/lib
+      /sw/lib
+      $ENV{HOME}/bin/lib
+      $ENV{HOME}/local/lib
+      $ENV{HOME}/bin/local/lib
+    PATH_SUFFIXES
+      graphviz
+  )
+
+  find_library(GVC_GRAPH_LIBRARY
+    NAMES
+      graph
+    PATHS
+      /usr/lib
+      /usr/local/lib
+      /opt/local/lib
+      /sw/lib
+      $ENV{HOME}/bin/lib
+      $ENV{HOME}/local/lib
+      $ENV{HOME}/bin/local/lib
+    PATH_SUFFIXES
+      graphviz
+  )
+
+  find_library(GVC_CDT_LIBRARY
+    NAMES
+      cdt
     PATHS
       /usr/lib
       /usr/local/lib
@@ -52,12 +82,14 @@ else (GVC_LIBRARIES AND GVC_INCLUDE_DIRS)
     ${GVC_INCLUDE_DIR}
   )
   set(GVC_LIBRARIES
-    ${GVC_LIBRARY}
+    ${GVC_CDT_LIBRARY}
+    ${GVC_GRAPH_LIBRARY}
+    ${GVC_GVC_LIBRARY}
 )
 
-  if (GVC_INCLUDE_DIRS AND GVC_LIBRARIES)
+  if (GVC_INCLUDE_DIRS AND GVC_CDT_LIBRARY AND GVC_CDT_LIBRARY AND GVC_GRAPH_LIBRARY)
      set(GVC_FOUND TRUE)
-  endif (GVC_INCLUDE_DIRS AND GVC_LIBRARIES)
+  endif (GVC_INCLUDE_DIRS AND GVC_CDT_LIBRARY AND GVC_CDT_LIBRARY AND GVC_GRAPH_LIBRARY)
 
   if (GVC_FOUND)
     if (NOT GVC_FIND_QUIETLY)

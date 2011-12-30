@@ -13,12 +13,13 @@
 #include <sstream>
 #include <vector>
 #include <limits>
-#include <gvc.h>
 #include <stdint.h>
 
 //Include the BGL/Graphviz stuff from boost
 #include <boost/graph/graphviz.hpp>
 #include <boost/graph/iteration_macros.hpp>
+
+#include <gvc.h>
 
 #include "HAPGraphlet.h"
 #include "IPv6_addr.h"

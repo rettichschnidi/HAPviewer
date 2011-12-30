@@ -263,16 +263,14 @@ if(HAPVIEWER_GUI)
 	find_package(GVC REQUIRED)
 	find_package(Threads REQUIRED)
 
+	find_library(GTK_gthread_LIBRARY
+		NAMES gthread-2.0
+		PATHS /usr/local/lib /usr/lib
+	)
+
 	#trying to work around known problems by detecting the Linux distribution
 	exec_program("/usr/bin/lsb_release -a" OUTPUT_VARIABLE LSB_RELEASE)
 	exec_program("cat /etc/debian_version" OUTPUT_VARIABLE DEBIAN_RELEASE)
-
-	if(${LSB_RELEASE} MATCHES "Ubuntu 8.04" OR ${DEBIAN_RELEASE} MATCHES "5.0") # if we are on Ubuntu 8.04/Debian Lenny, include this workaround (this is not future-proof!)
-		find_library(GTK_gthread_LIBRARY #Quick fix for Ubuntu 8.04/Debian Lenny.
-			NAMES gthread-2.0
-			PATHS /usr/local/lib /usr/lib
-		)
-	endif()
 
 	# using our own Find* if current CMake version is below 2.8.3
 	if(${CMAKE_MAJOR_VERSION} EQUAL 2 AND ${CMAKE_MINOR_VERSION} EQUAL 8 AND ${CMAKE_PATCH_VERSION} LESS 3)
