@@ -172,7 +172,7 @@ std::string IPv6_addr::toString() const {
  *
  *	\param os Reference to the ostream we should write to
  */
-void IPv6_addr::print(ostream& os) const {
+void IPv6_addr::print(ostream &os) const {
 	os << toString();
 }
 
@@ -184,7 +184,7 @@ void IPv6_addr::print(ostream& os) const {
  *
  *	\return ostream Reference to the submitted ostream
  */
-std::ostream & operator<<(std::ostream & os, const IPv6_addr & ip) {
+std::ostream& operator<<(std::ostream & os, const IPv6_addr & ip) {
 	ip.print(os);
 	return os;
 }
@@ -196,7 +196,7 @@ std::ostream & operator<<(std::ostream & os, const IPv6_addr & ip) {
  *
  *	\return IPv6_addr Resulting IP address
  */
-IPv6_addr IPv6_addr::operator &(const IPv6_addr & other) {
+IPv6_addr IPv6_addr::operator&(const IPv6_addr &other) {
 	IPv6_addr result;
 	for (uint32_t i = 0; i < size(); i++) {
 		result[i] = (*this)[i] & other[i];
@@ -204,6 +204,19 @@ IPv6_addr IPv6_addr::operator &(const IPv6_addr & other) {
 	return result;
 }
 
+/**
+ * Implements the bitwise &= operator
+ *
+ *	\param other Reference to the other IP address
+ *
+ *	\return IPv6_addr *this
+ */
+IPv6_addr& IPv6_addr::operator&=(const IPv6_addr &other) {
+	for (uint32_t i = 0; i < size(); i++) {
+		(*this)[i] &= other[i];
+	}
+	return *this;
+}
 
 /**
  *	Implements the less operator

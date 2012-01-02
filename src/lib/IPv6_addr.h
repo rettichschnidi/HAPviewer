@@ -38,7 +38,8 @@ class IPv6_addr: public boost::array<unsigned char, 16> {
 		bool operator==(const IPv6_addr & other) const;
 		bool operator<(const IPv6_addr & other) const;
 		bool operator!=(const IPv6_addr & other) const;
-		IPv6_addr operator &(const IPv6_addr & other);
+		IPv6_addr operator&(const IPv6_addr & other);
+		IPv6_addr& operator&=(const IPv6_addr &other);
 
 		std::string toNumericString() const;
 		uint32_t get24bitHash() const;
