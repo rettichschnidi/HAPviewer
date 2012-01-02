@@ -6,16 +6,18 @@
  * 	files 'BSD.txt' and 'GPL.txt'. For a list of authors see file 'AUTHORS'.
  */
 
+#include "ginterface.h"
+
 #include <iostream>
 #include <set>
+#include <exception>
+#include <string>
 #include <boost/program_options.hpp>
 #include <stdint.h>
 
-#include "ginterface.h"
-
 using namespace std;
 
-int main(int argc, char * argv[]) {
+int main(int argc, char *argv[]) {
 	// 1. Process command line
 	// ***********************
 	//
