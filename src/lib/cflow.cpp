@@ -55,8 +55,10 @@ cflow6::cflow6() {
  *	\param dOctets flow size in byte
  *	\param dPkts number of packets contained in flow
  */
-cflow6::cflow6(const IPv6_addr & localIP, uint16_t localPort, const IPv6_addr & remoteIP, uint16_t remotePort, uint8_t prot, uint8_t flowtype,
-      uint64_t startMs, uint32_t durationMs, uint64_t dOctets, uint32_t dPkts, uint8_t magic) {
+cflow6::cflow6(const IPv6_addr & localIP, uint16_t localPort,
+		const IPv6_addr & remoteIP, uint16_t remotePort, uint8_t prot,
+		uint8_t flowtype, uint64_t startMs, uint32_t durationMs,
+		uint64_t dOctets, uint32_t dPkts, uint8_t magic) {
 	this->magic = magic;
 	this->localIP = localIP;
 	this->localPort = localPort;
@@ -81,16 +83,29 @@ cflow6::cflow6(const IPv6_addr & localIP, uint16_t localPort, const IPv6_addr & 
 void cflow6::print(std::ostream & out) const {
 
 	if (localIP.isIPv6()) {
-		out << setw(4) << left << util::ipV6ProtocolToString(prot) << ": " << right << util::print_flowtype(dir) << " " << util::getIPandPortWithStableSize(
-		      localIP, localPort) << " -> " << util::getIPandPortWithStableSize(remoteIP, remotePort) << " AS:" << setw(6) << localAS << "->" << setw(6)
-		      << remoteAS << ", " << setw(4) << dOctets << " Byte," << setw(5) << dPkts << " Pkts, " << "start=" << util::seconds2daytime(startMs) << ", "
-		      << "dur=" << setprecision(3) << fixed << (durationMs) / 1000.0 << "s, " << "ToS=" << (int) tos_flags << ", " << "magic=" << (int) magic;
+		out << setw(4) << left << util::ipV6ProtocolToString(prot) << ": "
+				<< right << util::print_flowtype(dir) << " "
+				<< util::getIPandPortWithStableSize(localIP, localPort)
+				<< " -> "
+				<< util::getIPandPortWithStableSize(remoteIP, remotePort)
+				<< " AS:" << setw(6) << localAS << "->" << setw(6) << remoteAS
+				<< ", " << setw(4) << dOctets << " Byte," << setw(5) << dPkts
+				<< " Pkts, " << "start=" << util::seconds2daytime(startMs)
+				<< ", " << "dur=" << setprecision(3) << fixed
+				<< (durationMs) / 1000.0 << "s, " << "ToS=" << (int) tos_flags
+				<< ", " << "magic=" << (int) magic;
 	} else {
-		out << setw(4) << left << util::ipV6ProtocolToString(prot) << ": " << right << util::print_flowtype(dir) << " " << setw(INET_ADDRSTRLEN) << right
-		      << localIP << ":" << setw(5) << left << localPort << " -> " << setw(INET_ADDRSTRLEN) << right << remoteIP << left << ":" << setw(5) << remotePort
-		      << " " << right << "AS:" << setw(5) << localAS << " -> " << setw(5) << remoteAS << ", " << setw(7) << dOctets << " Byte," << setw(5) << dPkts
-		      << " Pkts, " << "start=" << util::seconds2daytime(startMs) << ", " << "dur=" << setprecision(3) << fixed << (durationMs) / 1000.0 << "s, "
-		      << "ToS=" << (int) tos_flags << ", " << "magic=" << (int) magic;
+		out << setw(4) << left << util::ipV6ProtocolToString(prot) << ": "
+				<< right << util::print_flowtype(dir) << " "
+				<< setw(INET_ADDRSTRLEN) << right << localIP << ":" << setw(5)
+				<< left << localPort << " -> " << setw(INET_ADDRSTRLEN) << right
+				<< remoteIP << left << ":" << setw(5) << remotePort << " "
+				<< right << "AS:" << setw(5) << localAS << " -> " << setw(5)
+				<< remoteAS << ", " << setw(7) << dOctets << " Byte," << setw(5)
+				<< dPkts << " Pkts, " << "start="
+				<< util::seconds2daytime(startMs) << ", " << "dur="
+				<< setprecision(3) << fixed << (durationMs) / 1000.0 << "s, "
+				<< "ToS=" << (int) tos_flags << ", " << "magic=" << (int) magic;
 	}
 }
 
@@ -101,12 +116,74 @@ void cflow6::print(std::ostream & out) const {
  *
  *	\return True if this object is smaller than other
  */
-bool cflow6::operator<(const cflow6 & other) const {
+bool cflow6::operator<(const cflow6 &other) const {
 	if (localIP != other.localIP)
 		return localIP < other.localIP;
 	if (remoteIP != other.remoteIP)
 		return remoteIP < other.remoteIP;
 	return startMs < other.startMs;
+}
+
+/**
+ * Implements the == operator
+ *
+ * \param other Cflow6 to compare with
+ * \return true if both cflows have the same value, false otherwise
+ */
+bool cflow6::operator==(const cflow6 &other) const {
+	if(magic != other.magic)
+		return false;
+	if(prot != other.prot)
+		return false;
+	if(dir != other.dir)
+		return false;
+	if(tos_flags != other.tos_flags)
+		return false;
+	if(durationMs != other.durationMs)
+		return false;
+	if(startMs != other.startMs)
+		return false;
+	if(localIP != other.localIP)
+		return false;
+	if(remoteIP != other.remoteIP)
+		return false;
+	if(dOctets != other.dOctets)
+		return false;
+	if(dPkts != other.dPkts)
+		return false;
+	if(localPort != other.localPort)
+		return false;
+	if(remotePort != other.remotePort)
+		return false;
+	if(localAS != other.localAS)
+		return false;
+	if(remoteAS != other.remoteAS)
+		return false;
+	return true;
+}
+
+/**
+ * Implements the binary &= operator
+ *
+ * \param other Cflow6 to compare with
+ * \return *this
+ */
+cflow6& cflow6::operator&=(const cflow6 &other) {
+	this->magic &= other.magic;
+	this->prot &= other.prot;
+	this->dir &= other.dir;
+	this->tos_flags &= other.tos_flags;
+	this->durationMs &= other.durationMs;
+	this->startMs &= other.startMs;
+	this->localIP &= other.localIP;
+	this->remoteIP &= other.remoteIP;
+	this->dOctets &= other.dOctets;
+	this->dPkts &= other.dPkts;
+	this->localPort &= other.localPort;
+	this->remotePort &= other.remotePort;
+	this->localAS &= other.localAS;
+	this->remoteAS &= other.remoteAS;
+	return *this;
 }
 
 /**
@@ -117,7 +194,7 @@ bool cflow6::operator<(const cflow6 & other) const {
  *
  *	\return ostream Reference to the submitted ostream
  */
-std::ostream & operator<<(std::ostream & os, const cflow6 & flow) {
+std::ostream &operator<<(std::ostream & os, const cflow6 & flow) {
 	flow.print(os);
 	return os;
 }
@@ -261,7 +338,7 @@ const cflow_t & Subflowlist::operator[](difference_type n) const {
  *	\param	prefs	Filter settings
  */
 CFlowFilter::CFlowFilter(const Subflowlist & subflowlist, const prefs_t & prefs) :
-	flow_filter(subflowlist.size()) {
+		flow_filter(subflowlist.size()) {
 	// Define a filter that defines which flowtypes are filtered
 	flowtype_filter = 0;
 	not_flowtype_filter = 0;
@@ -279,7 +356,8 @@ CFlowFilter::CFlowFilter(const Subflowlist & subflowlist, const prefs_t & prefs)
 	}
 	// Apply flow direction type filter
 	for (unsigned int i = 0; i < subflowlist.size(); i++) {
-		if (((subflowlist[i].flowtype & flowtype_filter) != 0) && ((subflowlist[i].flowtype & not_flowtype_filter) == 0)) {
+		if (((subflowlist[i].flowtype & flowtype_filter) != 0)
+				&& ((subflowlist[i].flowtype & not_flowtype_filter) == 0)) {
 			flow_filter[i] = true;
 		} else {
 			flow_filter[i] = false;
@@ -287,25 +365,26 @@ CFlowFilter::CFlowFilter(const Subflowlist & subflowlist, const prefs_t & prefs)
 	}
 
 	// Apply protocol filter
-	if (prefs.filter_TCP || prefs.filter_UDP || prefs.filter_ICMP || prefs.filter_OTHER) {
+	if (prefs.filter_TCP || prefs.filter_UDP || prefs.filter_ICMP
+			|| prefs.filter_OTHER) {
 		for (uint i = 0; i < subflowlist.size(); i++) {
 			switch (subflowlist[i].prot) {
-				case IPPROTO_TCP:
-					if (prefs.filter_TCP)
-						flow_filter[i] = true;
-					break;
-				case IPPROTO_UDP:
-					if (prefs.filter_UDP)
-						flow_filter[i] = true;
-					break;
-				case IPPROTO_ICMP:
-					if (prefs.filter_ICMP)
-						flow_filter[i] = true;
-					break;
-				default:
-					if (prefs.filter_OTHER)
-						flow_filter[i] = true;
-					break;
+			case IPPROTO_TCP:
+				if (prefs.filter_TCP)
+					flow_filter[i] = true;
+				break;
+			case IPPROTO_UDP:
+				if (prefs.filter_UDP)
+					flow_filter[i] = true;
+				break;
+			case IPPROTO_ICMP:
+				if (prefs.filter_ICMP)
+					flow_filter[i] = true;
+				break;
+			default:
+				if (prefs.filter_OTHER)
+					flow_filter[i] = true;
+				break;
 			}
 		}
 	}

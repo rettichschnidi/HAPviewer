@@ -81,8 +81,10 @@ struct cflow6 {
 					uint16_t remotePort, uint8_t prot, uint8_t flowtype, uint64_t startMs = 0,
 					uint32_t durationMs = 0, uint64_t dOctets = 0, uint32_t dPkts = 0, uint8_t
 					magic = CFLOW_6_MAGIC_NUMBER);
-		bool operator<(const cflow6 & flow) const;
+		bool operator<(const cflow6 &other) const;
+		bool operator==(const cflow6 &other) const;
 		void print(std::ostream & out) const;
+		cflow6& operator&=(const cflow6 &other);
 };
 #pragma pack()
 
@@ -140,7 +142,7 @@ class Subflowlist {
 		const_iterator end() const;
 		const_iterator begin() const;
 		size_type size() const;
-		const cflow_t & operator[](difference_type n) const;
+		const cflow_t& operator[](difference_type n) const;
 
 	private:
 		const_iterator _begin; ///< first element
