@@ -210,20 +210,23 @@ class CRole {
 		virtual bool add_candidate(int flow_num) {
 			return false;
 		}
-		virtual void prune_candidates() {
-		}
+
 		virtual CRole::role_t * get_next_role() {
 			return NULL;
 		}
+
 		const vector<uint32_t> & get_flow_role() {
 			return flow_role;
 		}
+
 		void set_flow_role_value(const uint32_t index, const uint32_t value) {
 			flow_role[index] = value;
 		}
+
 		int get_role_count() {
 			return role_count;
 		}
+
 		virtual void create_sub_roles();
 		virtual void rate_roles(const CFlowList& full_flowlist);
 		virtual float getRating(const int role_id);
